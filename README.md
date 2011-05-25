@@ -1,7 +1,7 @@
 #Gauss
 > JavaScript statistics and analytics library - [Node.JS](http://nodejs.org/) ready
 
-Evented and asynchronous from the bottom up, [Node.JS][1] is an attractive platform for data mining, statistics, and data analysis.
+Evented, asynchronous, and fast, [Node.JS][1] is an attractive platform for data mining, statistics, and data analysis.
 [Gauss](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) makes it easy to calculate and explore data through JavaScript.
 
 [1]: http://nodejs.org/
