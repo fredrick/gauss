@@ -1,0 +1,18 @@
+{
+  "author": "Fredrick Galoso <fgaloso@stackd.com>",
+  "name": "gauss",
+  "description": "JavaScript statistics and analytics library",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stackd/gauss.git"
+  },
+  "main": "index",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {
+      "vows": ">=0.3.0"
+  }
+}
