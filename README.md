@@ -103,11 +103,11 @@ Returns the difference between the largest and smallest value in a data set.
 
 **.mean(callback)**
 
-Returns the average.
+Returns the arithmetic mean.
 
 **.median(callback)**
 
-Returns the median. If there are an even amount of numbers in the data set, returns the average of the two middle values.
+Returns the median. If there are an even amount of numbers in the data set, returns the arithmetic mean of the two middle values.
 
 **.mode(callback)**
 
