@@ -52,7 +52,7 @@ For now Gauss only has methods for univariate analysis. We're constantly working
 Conventional:
 
     var gauss = require('gauss');
-    var set = new guass.Vector(5, 1, 3, 2, 21);
+    var set = new gauss.Vector(5, 1, 3, 2, 21);
 
 Monkey patch:
 
