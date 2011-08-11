@@ -42,7 +42,7 @@ You can then invoke the tests with either `node` or `vows`:
 *Run tests and view specification (verbose)*
 
     $ vows test/* --spec
-    
+
 ##API
 
 For now Gauss only has methods for univariate analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
@@ -52,7 +52,7 @@ For now Gauss only has methods for univariate analysis. We're constantly working
 Conventional:
 
     var gauss = require('gauss');
-    var set = new guass.Vector(5, 1, 3, 2, 21);
+    var set = new gauss.Vector(5, 1, 3, 2, 21);
 
 Monkey patch:
 
@@ -103,11 +103,11 @@ Returns the difference between the largest and smallest value in a data set.
 
 **.mean(callback)**
 
-Returns the average.
+Returns the arithmetic mean.
 
 **.median(callback)**
 
-Returns the median. If there are an even amount of numbers in the data set, returns the average of the two middle values.
+Returns the median. If there are an even amount of numbers in the data set, returns the arithmetic mean of the two middle values.
 
 **.mode(callback)**
 
