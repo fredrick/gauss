@@ -42,7 +42,7 @@ You can then invoke the tests with either `node` or `vows`:
 *Run tests and view specification (verbose)*
 
     $ vows test/* --spec
-    
+
 ##API
 
 For now Gauss only has methods for univariate analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!

@@ -10,7 +10,7 @@ var vows = require('vows'),
  * the Array type with some of gauss's goodies.
  */
 
-Array = require('../lib/vector').Vector;
+Array = require('../lib/gauss').Vector;
 
 var set = [10, 82, 67, 17, 36, 3, 1, 61, 33, 20,
 18, 35, 15, 39, 52, 85, 17, 92, 88, 70,
@@ -43,7 +43,7 @@ vows.describe('Vector').addBatch({
             assert.equal(topic, 2697);
         }
     },
-    'Mean': {
+    'Arithmetic Mean': {
         topic: set.mean(),
         '53.94': function(topic) {
             assert.equal(topic, 53.94);
