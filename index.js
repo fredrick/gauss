@@ -1,1 +1,1 @@
-module.exports = require('./lib/vector');
+module.exports = require('./lib/gauss');
