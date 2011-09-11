@@ -117,7 +117,7 @@ vows.describe('Vector').addBatch({
     'Percentile': {
         topic: set.percentile(.90),
         '92': function(topic) {
-            assert.equal(topic, 92);
+            assert.equal(topic, 93);
         }
     },
     'Density': {
