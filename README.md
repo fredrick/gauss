@@ -97,6 +97,10 @@ Returns the largest number.
 
 Returns the sum of the numbers.
 
+**.product(callback)**
+
+Returns the product of the numbers.
+
 **.range(callback)**
 
 Returns the difference between the largest and smallest value in a data set.
@@ -104,6 +108,14 @@ Returns the difference between the largest and smallest value in a data set.
 **.mean(callback)**
 
 Returns the arithmetic mean.
+
+**.gmean(callback)**
+
+Returns the geometric mean.
+
+**.hmean(callback)**
+
+Returns the harmonic mean.
 
 **.median(callback)**
 
