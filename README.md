@@ -188,7 +188,7 @@ Returns another instance of the Vector object and data.
 
 `Vector` also supports applying all the [Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math) object methods to an entire Vector set of numbers.
 
-For example, applying `pow` primitive method on a set to calculate the quadratic mean:
+For example, applying `pow` primitive method on a set to calculate the quadratic mean
 
     var squares = set.pow(2); // A Vector of set's members squared
     > [25, 1, 9, 4, 441]
