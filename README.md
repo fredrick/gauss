@@ -184,7 +184,7 @@ Returns a copy of the data set.
 
 Returns another instance of the Vector object and data.
 
-**[Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math)**
+**Math**
 
 `Vector` also supports applying all the [Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math) object methods to an entire Vector set of numbers.
 
