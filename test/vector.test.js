@@ -24,6 +24,12 @@ var majority = [10, 82, 67, 17, 36, 3, 1, 61, 33, 20,
 86, 60, 64, 38, 87, 15, 92, 61, 93, 17,
 38, 68, 11, 98, 62, 75, 94, 63, 17];
 
+var heterogeneous = [72, -15, -50, 19, -33, -2, 60, -28, -13, -2,
+17, -20, 24, 13, 33, -68, 75, -4, -18, -4,
+19, 8, -12, -11, -29, -1, -18, 16, 14, 34,
+-26, 4, -26, 49, -72, 77, -31, 32, -76, 21,
+30, -57, 87, -36, 13, 19, -31, -14, 48];
+
 vows.describe('Vector').addBatch({
     'Minimum': {
         topic: set.min(),
@@ -43,11 +49,35 @@ vows.describe('Vector').addBatch({
             assert.equal(topic, 2697);
         }
     },
+    'Product': {
+        topic: set.product(),
+        '7.120776302117291e+80': function(topic) {
+            assert.equal(topic, 7.120776302117291e+80);
+        }
+    },
     'Arithmetic Mean': {
         topic: set.mean(),
         '53.94': function(topic) {
             assert.equal(topic, 53.94);
         } 
+    },
+    'Geometric Mean': {
+        topic: set.gmean(),
+        '53.94': function(topic) {
+            assert.equal(topic, 41.40478623971778);
+        } 
+    },
+    'Harmonic Mean': {
+        topic: set.hmean(),
+        '53.94': function(topic) {
+            assert.equal(topic, 19.0456068931919);
+        } 
+    },
+    'Quadratic Mean': {
+        topic: set.qmean(),
+        '61.26548783777046': function(topic) {
+            assert.equal(topic, 61.26548783777046);
+        }  
     },
     'Median': {
         '(Even number of elements)': {
@@ -173,6 +203,30 @@ vows.describe('Vector').addBatch({
                     64, 70, 85, 92
                 ]);
             }
+        }
+    },
+    'Delta': {
+        topic: set.delta(),
+        'Sequential differences': function(topic) {
+            assert.deepEqual(topic, [
+                72, -15, -50, 19, -33, -2, 60, -28, -13, -2,
+                17, -20, 24, 13, 33, -68, 75, -4, -18, -4,
+                19, 8, -12, -11, -29, -1, -18, 16, 14, 34,
+                -26, 4, -26, 49, -72, 77, -31, 32, -76, 21,
+                30, -57, 87, -36, 13, 19, -31, -14, 48
+            ]);
+        }
+    },
+    'Absolute Value': {
+        topic: heterogeneous.abs(),
+        'Modulus': function(topic) {
+            assert.deepEqual(topic, [
+                72, 15, 50, 19, 33, 2, 60, 28, 13, 2,
+                17, 20, 24, 13, 33, 68, 75, 4, 18, 4,
+                19, 8, 12, 11, 29, 1, 18, 16, 14, 34,
+                26, 4, 26, 49, 72, 77, 31, 32, 76, 21,
+                30, 57, 87, 36, 13, 19, 31, 14, 48
+            ]);
         }
     },
     'Copy': {
