@@ -19,7 +19,7 @@ Getting started with Gauss + Node.JS is easy:
 
     $ npm install gauss
 
-###Build for browser/embedded applications
+###Build for browser/embedded applications [Coming soon!]
 
 Generates a minified gauss.js (Requires Java Runtime Environment to run Google's [Closure Compiler](http://code.google.com/closure/compiler/))
 
@@ -117,6 +117,10 @@ Returns the geometric mean.
 
 Returns the harmonic mean.
 
+**.qmean(callback)**
+
+Returns the quadratic mean (RMS - root mean square).
+
 **.median(callback)**
 
 Returns the median. If there are an even amount of numbers in the data set, returns the arithmetic mean of the two middle values.
@@ -179,3 +183,12 @@ Returns a copy of the data set.
 **.clone(callback)**
 
 Returns another instance of the Vector object and data.
+
+`Vector` also supports applying all the [Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math) object methods to an entire Vector set of numbers.
+
+For example, applying `pow` primitive method on a set to calculate the quadratic mean:
+
+    var squares = set.pow(2); // A Vector of set's members squared
+    > [25, 1, 9, 4, 441]
+    Math.sqrt(squares.sum() / squares.length); // Sum the squares -> find average -> quadratic mean (RMS)
+    > 9.797958971132712
