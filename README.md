@@ -213,7 +213,7 @@ For example, applying `pow` primitive method on a set to calculate the quadratic
 
 ###TimeSeries
 
-Perform time series analysis. TimeSeries currently accepts time in epoch miliseconds, followed by a numeric value.
+Perform time series analysis. TimeSeries currently accepts time in epoch miliseconds followed by a numeric value.
 
 ```javascript
     var gauss = require('gauss');
