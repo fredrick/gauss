@@ -45,7 +45,7 @@ You can then invoke the tests with either `node` or `vows`:
 
 ##API
 
-For now Gauss only has methods for univariate analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
+Gauss has methods for univariate and time series analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
 
 ###Instantiation
 
@@ -93,7 +93,7 @@ Finally, you can mix and match both callbacks and chaining:
     });
 ```
 
-###Methods
+###Vector
 
 **.min(callback)**
 
@@ -210,3 +210,20 @@ For example, applying `pow` primitive method on a set to calculate the quadratic
     Math.sqrt(squares.sum() / squares.length); // Sum the squares -> find average -> quadratic mean (RMS)
     > 9.797958971132712
 ```
+
+###TimeSeries
+
+Perform time series analysis. TimeSeries currently accepts time in epoch miliseconds
+
+```javascript
+    var gauss = require('gauss');
+    var set = new gauss.TimeSeries([1315378833000, 3.5], [1315789015000, 7]);
+```
+
+**.times(callback)**
+
+Returns a Vector of the times.
+
+**.values(callback)**
+
+Returns a Vector of the time series values.
