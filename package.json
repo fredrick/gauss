@@ -2,7 +2,7 @@
   "author": "Fredrick Galoso <fgaloso@stackd.com>",
   "name": "gauss",
   "description": "JavaScript statistics and analytics library",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/stackd/gauss.git"
