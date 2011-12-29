@@ -110,6 +110,12 @@ vows.describe('Vector').addBatch({
             '17': function(topic) {
                     assert.equal(topic, 17);
             }
+        },
+        '(Uniform)': {
+            topic: [1, 2, 3, 4].mode(),
+            '[1, 2, 3, 4]': function(topic) {
+                assert.deepEqual(topic, [1, 2, 3, 4]);
+            }
         }
     },
     'Range': {
