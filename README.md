@@ -190,7 +190,7 @@ Returns an array of values that divide a frequency distribution into equal group
     set.quantile(4); // Quartiles
 ```
 
-**.delta(quantity, callback)**
+**.delta(callback)**
 
 Returns an array of values containing the sequential difference between numbers in a sequence.
 
