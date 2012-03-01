@@ -203,21 +203,21 @@ Returns a Vector of the simple moving average (SMA); unweighted means of the pre
 
     // 10-period SMA
     prices.sma(10);
-    >   [
-            22.22475, 22.21283, 22.232689999999998,
-            22.26238, 22.30606, 22.42324,
-            22.61499, 22.76692, 22.90693,
-            23.07773, 23.211779999999997, 23.37861,
-            23.52657, 23.653779999999998, 23.711389999999998,
-            23.68557, 23.61298, 23.50573,
-            23.43225, 23.27734, 23.13121
-        ]
+    > [ 22.22475, 22.21283, 22.232689999999998,
+        22.26238, 22.30606, 22.42324,
+        22.61499, 22.76692, 22.90693,
+        23.07773, 23.211779999999997, 23.37861,
+        23.52657, 23.653779999999998, 23.711389999999998,
+        23.68557, 23.61298, 23.50573,
+        23.43225, 23.27734, 23.13121
+      ]
 ```
 
 **.ema(options, callback)**
 
 Returns a Vector of the exponential moving average (EMA); weighted means of the previous n data points.
 `options` is
+
 - Number Length of the observation window for moving average, using the default smoothing ratio (2 / period + 1) **or**
 - Object.period Length of the observation window for moving average
 - Object.ratio Function returning a Number to be used as smoothing ratio
@@ -239,6 +239,7 @@ Returns a Vector of the exponential moving average (EMA); weighted means of the 
         23.40440760058109, 23.390151673202713, 23.261124096256765,
         23.231392442391897, 23.080684725593372, 22.91556023003094
       ]
+
     // 10-period Welles Wilder EMA
     prices.ema({
         period: 10,
