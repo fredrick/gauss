@@ -157,7 +157,7 @@ Returns the value that below which a certain percent of observations fall within
 
 **.density(percent, callback)**
 
-Returns an array which is a percentile subset of values occurring within a data set.
+Returns a Vector which is a percentile subset of values occurring within a data set.
 
 **.distribution(format, callback)**
 
@@ -184,15 +184,81 @@ Returns an `Object` containing the (frequency) distribution of values within the
 
 **.quantile(quantity, callback)**
 
-Returns an array of values that divide a frequency distribution into equal groups, each containing the same fraction of the total data set.
+Returns a Vector of values that divide a frequency distribution into equal groups, each containing the same fraction of the total data set.
 
 ```javascript
     set.quantile(4); // Quartiles
 ```
 
+**.sma(period, callback)**
+
+Returns a Vector of the simple moving average (SMA); unweighted means of the previous n data points. `period` is the length of observation window for moving average.
+
+```javascript
+    var prices = [22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+    22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+    22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+    23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+    23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725];
+
+    // 10-period SMA
+    prices.sma(10);
+    >   [
+            22.22475, 22.21283, 22.232689999999998,
+            22.26238, 22.30606, 22.42324,
+            22.61499, 22.76692, 22.90693,
+            23.07773, 23.211779999999997, 23.37861,
+            23.52657, 23.653779999999998, 23.711389999999998,
+            23.68557, 23.61298, 23.50573,
+            23.43225, 23.27734, 23.13121
+        ]
+```
+
+**.ema(options, callback)**
+
+Returns a Vector of the exponential moving average (EMA); weighted means of the previous n data points.
+`options` is
+    - Number Length of the observation window for moving average, using the default smoothing ratio (2 / period + 1) *or*
+    - Object.period Length of the observation window for moving average
+    - Object.ratio Function returning a Number to be used as smoothing ratio
+
+```javascript
+    var prices = [22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+    22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+    22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+    23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+    23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725];
+
+    // 10-period EMA
+    prices.ema(10);
+    >   [
+            22.22475, 22.21192272727273, 22.24477314049587,
+            22.269650751314803, 22.331696069257568, 22.51789678393801,
+            22.796806459585646, 22.970659830570074, 23.127339861375514,
+            23.27720534112542, 23.34204073364807, 23.429396963893875,
+            23.509906606822263, 23.536050860127308, 23.47258706737689,
+            23.40440760058109, 23.390151673202713, 23.261124096256765,
+            23.231392442391897, 23.080684725593372, 22.91556023003094
+        ]
+    // 10-period Welles Wilder EMA
+    prices.ema({
+        period: 10,
+        ratio: function(n) { return 1 / n; }
+    });
+    >   [
+            22.22475, 22.217695, 22.2351855,
+            22.24982695, 22.285934255, 22.3929208295,
+            22.55881874655, 22.678236871895, 22.793653184705498,
+            22.90944786623495, 22.981883079611453, 23.065944771650308,
+            23.146570294485276, 23.19728326503675, 23.196254938533073,
+            23.186389444679765, 23.20035050021179, 23.14836545019061,
+            23.14328890517155, 23.069210014654395, 22.979539013188955
+        ]
+```
+
 **.delta(callback)**
 
-Returns an array of values containing the sequential difference between numbers in a sequence.
+Returns a Vector of values containing the sequential difference between numbers in a sequence.
 
 **.copy(callback)**
 
