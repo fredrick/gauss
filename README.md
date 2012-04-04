@@ -49,19 +49,16 @@ Gauss has methods for univariate and time series analysis. We're constantly work
 
 ###Instantiation
 
-Conventional:
-
 ```javascript
     var gauss = require('gauss');
+    // List of numbers
     var set = new gauss.Vector(5, 1, 3, 2, 21);
+    // From an regular Array
+    var numbers = new gauss.Vector([8, 6, 7, 5, 3, 0, 9]);
 ```
 
-Monkey patch:
-
-```javascript
-    Array = require('gauss').Vector;
-    var set = [5, 1, 3, 2, 21];
-```
+*Note: To prevent unintended scope polution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array datatype.
+Use the .array() method of any Gauss object to a convert to a vanilla Array.*
 
 ###Callbacks and method chaining
 
