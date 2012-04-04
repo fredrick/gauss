@@ -101,7 +101,7 @@ vows.describe('Vector').addBatch({
     },
     'Mode': {
         '(Tie)': {
-            topic: set.mode(),
+            topic: set.mode().array(),
             '[17, 38]': function(topic) {
                 assert.deepEqual(topic, [17, 38]);
             }
@@ -113,7 +113,7 @@ vows.describe('Vector').addBatch({
             }
         },
         '(Uniform)': {
-            topic: new Vector([1, 2, 3, 4]).mode(),
+            topic: new Vector([1, 2, 3, 4]).mode().array(),
             '[1, 2, 3, 4]': function(topic) {
                 assert.deepEqual(topic, [1, 2, 3, 4]);
             }
@@ -158,9 +158,9 @@ vows.describe('Vector').addBatch({
         }
     },
     'Density': {
-        topic: set.density(.25),
+        topic: set.density(.25).array(),
         'Array of values (25% density)': function(topic) {
-            assert.deepEqual(topic, new Vector([39, 40, 41, 49, 52, 52, 60, 61, 61, 62, 63, 64]));
+            assert.deepEqual(topic, [39, 40, 41, 49, 52, 52, 60, 61, 61, 62, 63, 64]);
         }
     },
     'Distribution': {
@@ -197,13 +197,13 @@ vows.describe('Vector').addBatch({
     },
     'Quantile': {
         '(Quartile: 4-quantiles)': {
-            topic: set.quantile(4),
+            topic: set.quantile(4).array(),
             '[ 33, 60, 82 ]': function(topic) {
                 assert.deepEqual(topic, [ 33, 60, 82 ]);
             }
         },
         '(Decile: 10-quantiles)': {
-            topic: set.quantile(10),
+            topic: set.quantile(10).array(),
             '[15, 18, 36, 40, 60, 64, 70, 85, 92]': function(topic) {
                 assert.deepEqual(topic, [
                     15, 18, 36, 40, 60,
@@ -213,7 +213,7 @@ vows.describe('Vector').addBatch({
         }
     },
     'Delta': {
-        topic: set.delta(),
+        topic: set.delta().array(),
         'Sequential differences': function(topic) {
             assert.deepEqual(topic, [
                 72, -15, -50, 19, -33, -2, 60, -28, -13, -2,
@@ -226,7 +226,7 @@ vows.describe('Vector').addBatch({
     },
     'Simple Moving Average': {
         '(10)': {
-            topic: prices.sma(10),
+            topic: prices.sma(10).array(),
             '10-period SMA': function(topic) {
                 assert.deepEqual(topic, [
                     22.22475, 22.21283, 22.232689999999998,
@@ -248,13 +248,13 @@ vows.describe('Vector').addBatch({
     },
     'Exponential Moving Average': {
         '(1)': {
-            topic: prices.ema(1),
+            topic: prices.ema(1).array(),
             'Single-period EMA': function(topic) {
-                assert.deepEqual(topic, prices);
+                assert.deepEqual(topic, prices.array());
             }
         },
         '(10)': {
-            topic: prices.ema(10),
+            topic: prices.ema(10).array(),
             '10-period EMA': function(topic) {
                 assert.deepEqual(topic, [
                     22.22475, 22.21192272727273, 22.24477314049587,
@@ -268,7 +268,7 @@ vows.describe('Vector').addBatch({
             }
         },
         '(10 Wilder)': {
-            topic: prices.ema({ period: 10, ratio: function(n) { return 1 / n; } }),
+            topic: prices.ema({ period: 10, ratio: function(n) { return 1 / n; } }).array(),
             '10-period Welles Wilder EMA': function(topic) {
                 assert.deepEqual(topic, [
                     22.22475, 22.217695, 22.2351855,
@@ -295,9 +295,9 @@ vows.describe('Vector').addBatch({
         }
     },
     'Copy': {
-        topic: set.copy(),
+        topic: set.copy().array(),
         'Values === Parent Vector': function(topic) {
-            assert.deepEqual(topic, set);
+            assert.deepEqual(topic, set.array());
         }
     },
     'Clone': {
