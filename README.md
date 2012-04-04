@@ -53,11 +53,16 @@ Gauss has methods for univariate and time series analysis. We're constantly work
     var gauss = require('gauss');
     // List of numbers
     var set = new gauss.Vector(5, 1, 3, 2, 21);
-    // From an regular Array
+    // From a regular Array
     var numbers = new gauss.Vector([8, 6, 7, 5, 3, 0, 9]);
+    // After instantiation, Gauss objects can be conveniently used like any Array
+    numbers[0] = 2;
+    set[1] = 7;
+    // Native methods that return an Array, such as .slice() or .map() must be converted to Vectors to use Vector methods
+    var subset = new Vector(set.slice(1, 4));
 ```
 
-*Note: To prevent unintended scope polution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array datatype.
+*Note: To prevent unintended scope/prototype polution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array datatype.
 Use the .array() method of any Gauss object to a convert to a vanilla Array.*
 
 ###Callbacks and method chaining
