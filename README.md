@@ -121,7 +121,7 @@ Returns the harmonic mean.
 
 **.qmean(callback)**
 
-Returns the quadratic mean (RMS - root mean square).
+Returns the quadratic mean (RMS, root mean square).
 
 **.median(callback)**
 
