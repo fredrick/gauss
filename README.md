@@ -19,14 +19,6 @@ Getting started with Gauss + Node.JS is easy:
 
     $ npm install gauss
 
-###Build for browser/embedded applications [Coming soon!]
-
-Generates a minified gauss.js (Requires Java Runtime Environment to run Google's [Closure Compiler](http://code.google.com/closure/compiler/))
-
-    $ git clone git://github.com/stackd/gauss.git
-    $ cd gauss
-    $ make
-
 ###Installing development dependencies and running tests
 
 To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatically resolve this:
@@ -58,12 +50,10 @@ Gauss has methods for univariate and time series analysis. We're constantly work
     // After instantiation, Gauss objects can be conveniently used like any Array
     numbers[0] = 2;
     set[1] = 7;
-    // Native methods that return an Array, such as .slice() or .map() must be converted to Vectors to use Vector methods
-    var subset = new Vector(set.slice(1, 4));
 ```
 
 *Note: To prevent unintended scope/prototype polution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array datatype.
-Use the .array() method of any Gauss object to a convert to a vanilla Array.*
+Use the .toArray() method of any Gauss object to a convert to a vanilla Array.*
 
 ###Callbacks and method chaining
 
