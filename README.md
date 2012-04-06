@@ -47,12 +47,15 @@ Gauss has methods for univariate and time series analysis. We're constantly work
     var set = new gauss.Vector(5, 1, 3, 2, 21);
     // From a regular Array
     var numbers = new gauss.Vector([8, 6, 7, 5, 3, 0, 9]);
+    // Convert an Array to a Vector with helper method toVector()
+    var vanilla = [4, 1, 2, 5, 6];
+    var chocolate = vanilla.toVector();
     // After instantiation, Gauss objects can be conveniently used like any Array
     numbers[0] = 2;
     set[1] = 7;
 ```
 
-*Note: To prevent unintended scope/prototype polution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array datatype.
+*Note: To prevent unintended scope/prototype pollution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array data type.
 Use the .toArray() method of any Gauss object to a convert to a vanilla Array.*
 
 ###Callbacks and method chaining
@@ -274,7 +277,7 @@ For example, applying `pow` primitive method on a set to calculate the quadratic
 
 ###TimeSeries
 
-Perform time series analysis. TimeSeries currently accepts time in epoch miliseconds followed by a numeric value.
+Perform time series analysis. TimeSeries currently accepts time in epoch milliseconds followed by a numeric value.
 
 ```javascript
     var gauss = require('gauss');
