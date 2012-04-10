@@ -37,7 +37,7 @@ You can then invoke the tests with either `node` or `vows`:
 
 ##API
 
-Gauss has methods for univariate and time series analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
+Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
 
 ###Instantiation
 
@@ -56,7 +56,7 @@ Gauss has methods for univariate and time series analysis. We're constantly work
 ```
 
 *Note: To prevent unintended scope/prototype pollution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array data type.
-Use the .toArray() method of any Gauss object to a convert to a vanilla Array.*
+Use the .toArray() method of any Gauss object to a convert to a vanilla Array. Gauss adds a toVector() convenience method to the Array prototype to facilitate converting to Vectors.*
 
 ###Callbacks and method chaining
 
@@ -132,7 +132,7 @@ Returns the median. If there are an even amount of numbers in the data set, retu
 
 **.mode(callback)**
 
-Returns the value(s) that occur the most frequently in a data set. If there is a tie, returns an array of values.
+Returns the value(s) that occur the most frequently in a data set. If there is a tie, returns a Vector of values.
 
 **.variance(callback)**
 
@@ -156,7 +156,7 @@ Returns a Vector which is a percentile subset of values occurring within a data 
 
 **.distribution(format, callback)**
 
-Returns an `Object` containing the (frequency) distribution of values within the array. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
+Returns an `Object` containing the (frequency) distribution of values within the Vector. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
 
 ```javascript
     set.distribution();
