@@ -20,18 +20,6 @@ Getting started with Gauss + Node.js is easy:
 
     $ npm install gauss
 
-###Using Gauss within a web browser
-
-Download and include `gauss.min.js`:
-
-```html
-    <script src="gauss.min.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8">
-        var set = new gauss.Vector(),
-            numbers = new Vector();
-    </script>
-```
-
 ###Installing development dependencies and running tests
 
 To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatically resolve this:
@@ -47,6 +35,18 @@ You can then invoke the tests with either `node` or `vows`:
 *Run tests and view specification (verbose)*
 
     $ vows test/* --spec
+
+###Using Gauss within a web browser
+
+Download and include `gauss.min.js`:
+
+```html
+    <script src="gauss.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+        var set = new gauss.Vector(),
+            numbers = new Vector();
+    </script>
+```
 
 ##API
 
