@@ -30,7 +30,7 @@ Download and include `gauss.min.js`:
         var set = new gauss.Vector(),
             numbers = new Vector();
     </script>
-```html
+```
 
 ###Installing development dependencies and running tests
 
