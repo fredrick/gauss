@@ -38,7 +38,7 @@ You can then invoke the tests with either `node` or `vows`:
 
 ###Using Gauss within a web browser
 
-Download and include `[gauss.min.js](https://raw.github.com/stackd/gauss/master/gauss.min.js)`:
+Download and include [gauss.min.js](https://raw.github.com/stackd/gauss/master/gauss.min.js):
 
 ```html
     <script src="gauss.min.js" type="text/javascript"></script>
