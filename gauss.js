@@ -3,7 +3,6 @@
 // @output_file_name gauss.min.js
 // ==/ClosureCompiler==
 
-// ADD YOUR CODE HERE
 /**
  * Gauss [Browser] v0.2.5
  * JavaScript statistics, analytics, and set library
