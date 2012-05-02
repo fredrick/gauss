@@ -1,8 +1,9 @@
 #Gauss
-> JavaScript statistics and analytics library - [Node.JS](http://nodejs.org/) ready
+> JavaScript statistics and analytics library - [Node.js](http://nodejs.org/) ready
 
-Evented, asynchronous, and fast, [Node.JS][1] is an attractive platform for data mining, statistics, and data analysis.
+Evented, asynchronous, and fast, [Node.js][1] is an attractive platform for data mining, statistics, and data analysis.
 [Gauss](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) makes it easy to calculate and explore data through JavaScript.
+Gauss also works in the browser.
 
 [1]: http://nodejs.org/
 
@@ -15,9 +16,21 @@ MIT/X11 - See [LICENSE][2]
 
 ###Install with NPM (Node Package Manager)
 
-Getting started with Gauss + Node.JS is easy:
+Getting started with Gauss + Node.js is easy:
 
     $ npm install gauss
+
+###Using Gauss within a web browser
+
+Download and include `gauss.min.js`:
+
+```html
+    <script src="gauss.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+        var set = new gauss.Vector(),
+            numbers = new Vector();
+    </script>
+```html
 
 ###Installing development dependencies and running tests
 
