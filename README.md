@@ -2,8 +2,8 @@
 > JavaScript statistics and analytics library - [Node.js](http://nodejs.org/) ready
 
 Evented, asynchronous, and fast, [Node.js][1] is an attractive platform for data mining, statistics, and data analysis.
-[Gauss](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) makes it easy to calculate and explore data through JavaScript.
-Gauss also works in the browser.
+[Gauss](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) makes it [easy to calculate and explore data through JavaScript](http://fredrickgaloso.me/talks/gauss.html#9),
+both on Node.js and within the web browser.
 
 [1]: http://nodejs.org/
 
@@ -43,8 +43,8 @@ Download and include [gauss.min.js](https://raw.github.com/stackd/gauss/master/g
 ```html
     <script src="gauss.min.js" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-        var set = new gauss.Vector(),
-            numbers = new Vector(),
+        var set = new gauss.Vector(5, 1, 3, 2, 21),
+            numbers = new Vector([8, 6, 7, 5, 3, 0, 9]),
             times = new TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
     </script>
 ```
