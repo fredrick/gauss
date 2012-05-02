@@ -44,7 +44,8 @@ Download and include [gauss.min.js](https://raw.github.com/stackd/gauss/master/g
     <script src="gauss.min.js" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
         var set = new gauss.Vector(),
-            numbers = new Vector();
+            numbers = new Vector(),
+            times = new TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
     </script>
 ```
 
@@ -277,7 +278,7 @@ Returns another instance of the Vector object and data.
 
 ###Math
 
-`Vector` supports applying all the [Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math) object methods to an entire Vector set of numbers.
+`Vector` supports applying all the [Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math#Methods) object methods to an entire Vector set of numbers.
 
 For example, applying `pow` primitive method on a set to calculate the quadratic mean
 
