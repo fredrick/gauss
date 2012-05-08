@@ -120,7 +120,7 @@ Returns another instance of the Vector object and data.
 
 Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
 
-*Note: Streaming calculations like sum() and functions dependent on streaming capable functions benefit from O(1) amortized performance*
+*Note: Streaming calculations like sum() and functions dependent on streaming capable functions benefit from O(1) amortized performance.*
 
 ```javascript
     var Vector = require('gauss').Vector,
