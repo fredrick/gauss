@@ -131,6 +131,9 @@ Returns the updated Vector with one or more elements appended to the end; perfor
     // Keep on pushing, sum is updated as numbers are pushed
      digits.push(4, 5, 6);
     > [ 1, 2, 3, 4, 5, 6 ]
+    // Chain the pushes
+    digits.push(7, 8, 9).push(10);
+    > [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 ```
 
 **.min(callback)**
