@@ -268,6 +268,10 @@ Returns a Vector of the exponential moving average (EMA); weighted means of the 
 
 Returns a Vector of values containing the sequential difference between numbers in a sequence.
 
+**.equal(callback)**
+
+Returns `true` or `false` if Vector values are equal to another Vector or Array
+
 **.copy(callback)**
 
 Returns a copy of the data set.

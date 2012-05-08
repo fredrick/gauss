@@ -64,13 +64,13 @@ vows.describe('Vector').addBatch({
   },
   'Geometric Mean': {
     topic: set.gmean(),
-    '53.94': function(topic) {
+    '41.40478623971778': function(topic) {
       assert.equal(topic, 41.40478623971778);
     } 
   },
   'Harmonic Mean': {
     topic: set.hmean(),
-    '53.94': function(topic) {
+    '19.0456068931919': function(topic) {
       assert.equal(topic, 19.0456068931919);
     } 
   },
@@ -294,9 +294,15 @@ vows.describe('Vector').addBatch({
       ]);
     }
   },
+  'Equal': {
+    topic: new Vector(1, 2, 3).equal(new Vector(1, 2, 3)),
+    'True': function(topic) {
+      assert.equal(topic, true);
+    }
+  },
   'Copy': {
     topic: set.copy().toArray(),
-    'Values === Parent Vector': function(topic) {
+    'Copy of Parent Vector': function(topic) {
       assert.deepEqual(topic, set.toArray());
     }
   },
