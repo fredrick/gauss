@@ -282,18 +282,6 @@ vows.describe('Vector').addBatch({
       }
     }
   },
-  'Absolute Value': {
-    topic: heterogeneous.abs().toArray(),
-    'Modulus': function(topic) {
-      assert.deepEqual(topic, [
-        72, 15, 50, 19, 33, 2, 60, 28, 13, 2,
-        17, 20, 24, 13, 33, 68, 75, 4, 18, 4,
-        19, 8, 12, 11, 29, 1, 18, 16, 14, 34,
-        26, 4, 26, 49, 72, 77, 31, 32, 76, 21,
-        30, 57, 87, 36, 13, 19, 31, 14, 48
-      ]);
-    }
-  },
   'Equal': {
     topic: new Vector(1, 2, 3).equal(new Vector(1, 2, 3)),
     'True': function(topic) {

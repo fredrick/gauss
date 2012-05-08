@@ -104,6 +104,35 @@ Finally, you can mix and match both callbacks and chaining:
 
 ###Vector
 
+**.equal(callback)**
+
+Returns `true` or `false` if Vector values are equal to another Vector or Array.
+
+**.copy(callback)**
+
+Returns a copy of the data set.
+
+**.clone(callback)**
+
+Returns another instance of the Vector object and data.
+
+**.push(number1, ..., numberN, callback)**
+
+Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
+
+*Note: Streaming calculations like sum() and functions dependent on streaming capable functions benefit from O(1) amortized performance*
+
+```javascript
+    var Vector = require('gauss').Vector,
+        digits = new Vector();
+    // Push some numbers in
+    digits.push(1, 2, 3).sum();
+    > 12
+    // Keep on pushing, sum is updated as numbers are pushed
+     digits.push(4, 5, 6);
+    > [ 1, 2, 3, 4, 5, 6 ]
+```
+
 **.min(callback)**
 
 Returns the smallest number.
@@ -267,18 +296,6 @@ Returns a Vector of the exponential moving average (EMA); weighted means of the 
 **.delta(callback)**
 
 Returns a Vector of values containing the sequential difference between numbers in a sequence.
-
-**.equal(callback)**
-
-Returns `true` or `false` if Vector values are equal to another Vector or Array
-
-**.copy(callback)**
-
-Returns a copy of the data set.
-
-**.clone(callback)**
-
-Returns another instance of the Vector object and data.
 
 ###Math
 
