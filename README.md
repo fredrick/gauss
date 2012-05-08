@@ -127,7 +127,7 @@ Returns the updated Vector with one or more elements appended to the end; perfor
         digits = new Vector();
     // Push some numbers in
     digits.push(1, 2, 3).sum();
-    > 12
+    > 6
     // Keep on pushing, sum is updated as numbers are pushed
      digits.push(4, 5, 6);
     > [ 1, 2, 3, 4, 5, 6 ]
