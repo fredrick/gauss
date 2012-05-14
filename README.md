@@ -1,4 +1,4 @@
-#Gauss
+#Gauss [![Build Status](https://secure.travis-ci.org/stackd/gauss.png)](http://travis-ci.org/stackd/gauss)
 > JavaScript statistics and analytics library - [Node.js](http://nodejs.org/) ready
 
 Evented, asynchronous, and fast, [Node.js][1] is an attractive platform for data mining, statistics, and data analysis.
