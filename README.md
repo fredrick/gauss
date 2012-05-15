@@ -28,7 +28,6 @@ To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatical
 
 You can then invoke the tests with `npm test`.
 
-
 ###Using Gauss within a web browser
 
 Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility is listed [here](http://kangax.github.com/es5-compat-table/). Download and include [gauss.min.js](https://raw.github.com/stackd/gauss/master/gauss.min.js):
