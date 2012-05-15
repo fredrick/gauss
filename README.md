@@ -26,15 +26,8 @@ To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatical
 
     $ npm install gauss --devel
 
-You can then invoke the tests with either `node` or `vows`:
+You can then invoke the tests with `npm test`.
 
-*Simple test run*
-
-    $ node test/*
-
-*Run tests and view specification (verbose)*
-
-    $ vows test/* --spec
 
 ###Using Gauss within a web browser
 
