@@ -98,7 +98,7 @@ Finally, you can mix and match both callbacks and chaining:
 
 ###Vector
 
-####.equal(callback)
+#### .equal(callback) [equal] ##
 
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
