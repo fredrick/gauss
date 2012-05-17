@@ -282,6 +282,84 @@ vows.describe('Vector').addBatch({
       }
     }
   },
+  'Push': {
+    '(Values)': {
+      topic: (function() {
+        var numbers = new Vector();
+        numbers.push(
+          22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+          22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+          22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+          23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+          23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725
+        );
+        return numbers.toArray();
+      })(),
+      'Push equivalent to instantiation': function(topic) {
+        assert.deepEqual(topic, prices.toArray());
+      }
+    },
+    '(Sum)': {
+      topic: (function() {
+        var numbers = new Vector();
+        numbers.push(
+          22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+          22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+          22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+          23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+          23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725
+        );
+        return numbers.sum();
+      })(),
+      '685.6774': function(topic) {
+          assert.equal(topic, (function() {
+            var sum = 0.0;
+            for (var i = 0; i < prices.length; i++) {
+              sum += prices[i];
+            }
+            return sum;
+          })());
+      }
+    },
+    '(Product)': {
+      topic: (function() {
+        var numbers = new Vector();
+        numbers.push(
+          22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+          22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+          22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+          23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+          23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725
+        );
+        return numbers.product();
+      })(),
+      '5.809803264589068e+40': function(topic) {
+        assert.equal(topic, (function() {
+          var product = 1.0;
+          for (var i = 0; i < prices.length; i++) {
+            product *= prices[i];
+          }
+          return product;
+        })());
+      }
+    },
+    '(Variance)': {
+      topic: (function() {
+        var numbers = new Vector();
+        numbers.push(
+          22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+          22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+          22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+          23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+          23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725
+        );
+        return numbers.variance();
+      })(),
+      '0.468596215155556': function(topic) {
+        assert.equal(topic, 0.468596215155556);
+      }
+    }
+  },
   'Equal': {
     topic: new Vector(1, 2, 3).equal(new Vector(1, 2, 3)),
     'True': function(topic) {
@@ -290,13 +368,13 @@ vows.describe('Vector').addBatch({
   },
   'Copy': {
     topic: set.copy().toArray(),
-    'Copy of Parent Vector': function(topic) {
+    'Copy of parent Vector': function(topic) {
       assert.deepEqual(topic, set.toArray());
     }
   },
   'Clone': {
     topic: set.clone(),
-    'Instance of Parent Vector': function(topic) {
+    'Instance of parent Vector': function(topic) {
       assert.instanceOf(topic, Array);
     }
   }
