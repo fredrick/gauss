@@ -98,19 +98,19 @@ Finally, you can mix and match both callbacks and chaining:
 
 ###Vector
 
-**.equal(callback)**
+####.equal(callback)
 
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
-**.copy(callback)**
+####.copy(callback)
 
 Returns a copy of the data set.
 
-**.clone(callback)**
+####.clone(callback)
 
 Returns another instance of the Vector object and data.
 
-**.push(number1, ..., numberN, callback)**
+####.push(number1, ..., numberN, callback)
 
 Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
 
@@ -130,71 +130,71 @@ Returns the updated Vector with one or more elements appended to the end; perfor
     > [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 ```
 
-**.min(callback)**
+####.min(callback)
 
 Returns the smallest number.
 
-**.max(callback)**
+####.max(callback)
 
 Returns the largest number.
 
-**.sum(callback)**
+####.sum(callback)
 
 Returns the sum of the numbers.
 
-**.product(callback)**
+####.product(callback)
 
 Returns the product of the numbers.
 
-**.range(callback)**
+####.range(callback)
 
 Returns the difference between the largest and smallest value in a data set.
 
-**.mean(callback)**
+####.mean(callback)
 
 Returns the arithmetic mean.
 
-**.gmean(callback)**
+####.gmean(callback)
 
 Returns the geometric mean.
 
-**.hmean(callback)**
+####.hmean(callback)
 
 Returns the harmonic mean.
 
-**.qmean(callback)**
+####.qmean(callback)
 
 Returns the quadratic mean (RMS, root mean square).
 
-**.median(callback)**
+####.median(callback)
 
 Returns the median. If there are an even amount of numbers in the data set, returns the arithmetic mean of the two middle values.
 
-**.mode(callback)**
+####.mode(callback)
 
 Returns the value(s) that occur the most frequently in a data set. If there is a tie, returns a Vector of values.
 
-**.variance(callback)**
+####.variance(callback)
 
 Returns a measure of how far a set of numbers are spread out from each other.
 
-**.stdev(percent, callback)**
+####.stdev(percent, callback)
 
 Returns the standard deviation of data set. If a percent is given, returns the standard deviation with respect to a percentile of the population.
 
-**.frequency(value, callback)**
+####.frequency(value, callback)
 
 Returns the number of occurrences of value within a data set.
 
-**.percentile(value, callback)**
+####.percentile(value, callback)
 
 Returns the value that below which a certain percent of observations fall within the data set.
 
-**.density(percent, callback)**
+####.density(percent, callback)
 
 Returns a Vector which is a percentile subset of values occurring within a data set.
 
-**.distribution(format, callback)**
+####.distribution(format, callback)
 
 Returns an `Object` containing the (frequency) distribution of values within the Vector. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
 
@@ -217,7 +217,7 @@ Returns an `Object` containing the (frequency) distribution of values within the
       }
 ```
 
-**.quantile(quantity, callback)**
+####.quantile(quantity, callback)
 
 Returns a Vector of values that divide a frequency distribution into equal groups, each containing the same fraction of the total data set.
 
@@ -225,7 +225,7 @@ Returns a Vector of values that divide a frequency distribution into equal group
     set.quantile(4); // Quartiles
 ```
 
-**.sma(period, callback)**
+####.sma(period, callback)
 
 Returns a Vector of the simple moving average (SMA); unweighted means of the previous n data points. `period` is the length of observation window for moving average.
 
@@ -250,7 +250,7 @@ Returns a Vector of the simple moving average (SMA); unweighted means of the pre
       ]
 ```
 
-**.ema(options, callback)**
+####.ema(options, callback)
 
 Returns a Vector of the exponential moving average (EMA); weighted means of the previous n data points.
 `options` is
@@ -286,7 +286,7 @@ Returns a Vector of the exponential moving average (EMA); weighted means of the 
       ]
 ```
 
-**.delta(callback)**
+####.delta(callback)
 
 Returns a Vector of values containing the sequential difference between numbers in a sequence.
 
@@ -312,10 +312,10 @@ Perform time series analysis. TimeSeries currently accepts time in epoch millise
     var set = new gauss.TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
 ```
 
-**.times(callback)**
+####.times(callback)
 
 Returns a Vector of the times.
 
-**.values(callback)**
+####.values(callback)
 
 Returns a Vector of the time series values.
