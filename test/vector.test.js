@@ -356,7 +356,30 @@ vows.describe('Vector').addBatch({
         return numbers.variance();
       })(),
       '0.468596215155556': function(topic) {
-        assert.equal(topic, 0.468596215155556);
+        assert.equal(topic, prices.variance());
+      }
+    },
+    '(Heterogeneous Variance)': {
+      topic: (function() {
+        var mixed = new Vector();
+        mixed.push(
+          72, -15, -50, 19, -33, -2, 60, -28, -13, -2,
+          17, -20, 24, 13, 33, -68, 75, -4, -18, -4,
+          19, 8, -12, -11, -29, -1, -18, 16, 14, 34,
+          -26, 4, -26, 49, -72, 77, -31, 32, -76, 21,
+          30, -57, 87, -36, 13, 19, -31, -14, 48
+        );
+        return mixed.variance().toFixed(12) === heterogeneous.variance().toFixed(12);
+      })(),
+      '1437.684298209080': function(topic) {
+        assert.equal(topic, (function() {
+          var variance = 0.0;
+          for (var i = 0; i < heterogeneous.length; i++) {
+            variance += Math.pow((heterogeneous[i] - heterogeneous.mean()), 2);
+          }
+          variance /= heterogeneous.length;
+          return variance.toFixed(12) === heterogeneous.variance().toFixed(12);
+        })());
       }
     }
   },
