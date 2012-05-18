@@ -400,5 +400,20 @@ vows.describe('Vector').addBatch({
     'Instance of parent Vector': function(topic) {
       assert.instanceOf(topic, Array);
     }
+  },
+  'Extend': {
+    topic: set.extend({
+      'identity': function() {
+        return this;
+      },
+      'tail': function() {
+        return this.slice(1);
+      }
+    }),
+    'Extend Vector': function(topic) {
+      assert.deepEqual([topic.toArray(), topic.tail().toArray()],
+        [set.toArray(), set.slice(1).toArray()]
+      );
+    }
   }
 }).export(module);
