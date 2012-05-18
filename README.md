@@ -62,7 +62,7 @@ For example, using the `help()` function and analyzing a data file from the Gaus
       TimeSeries: [Function] }
     gauss> var fs = require('fs');
     gauss> var data = fs.readFileSync('data.txt').toString();
-    gauss> data = data.toString().split('\n');
+    gauss> data = data.split('\n');
     [ '8',
       '6',
       '7',
