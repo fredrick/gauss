@@ -49,7 +49,6 @@ To experiment with Gauss or to quickly start a Node.js command-line environment 
 
 For example, using the `help()` function and analyzing a data file from the Gauss REPL:
 
-```javascript
     $ gauss
     gauss> help()
     Gauss 0.2.5
@@ -58,6 +57,7 @@ For example, using the `help()` function and analyzing a data file from the Gaus
         Usage:
           var set = new Vector(1, 2, 3);
           var numbers = new gauss.TimeSeries();
+```javascript
     { version: '0.2.5',
       Vector: [Function],
       TimeSeries: [Function] }
