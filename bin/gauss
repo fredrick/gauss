@@ -37,7 +37,7 @@ var util = require('util'),
     Vector = require('../lib/vector');
     TimeSeries = require('../lib/timeseries');
 
-var session = repl.start('gauss> ');
+var session = repl.start('gauss> ', null, null, null, true);
 session.context.gauss = gauss;
 session.context.Vector = Vector;
 session.context.TimeSeries = TimeSeries;
@@ -50,10 +50,14 @@ session.context.cwd = process.cwd;
 session.context.help = function(command) {
   var banner = 'Gauss '+ gauss.version +'\n \
   /* https://github.com/stackd/gauss#api */ \n \
-  Functions: print, inspect, cwd, help\n \
+  Functions: print, inspect, cwd, clear, help\n \
   Usage:\n \
     var set = new Vector(1, 2, 3);\n \
-    var numbers = new gauss.TimeSeries();';
+    var times = new gauss.TimeSeries();';
   console.log(banner);
   return gauss;
 };
+
+session.context.clear = function() {
+  process.stdout.write('\u001B[2J\u001B[0;0f');
+}

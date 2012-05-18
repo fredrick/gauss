@@ -45,7 +45,7 @@ Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility
 
 ###Using the REPL console
 
-To experiment with Gauss or to quickly start a Node.js command-line environment for number crunching, Gauss ships with a lightweight REPL (Read–eval–print loop). Start the REPL with `npm start` within the source directory, or if installed globally (via `npm install -g gauss`), `gauss`.
+To experiment with Gauss or to quickly start a Node.js command-line environment for number crunching, Gauss ships with a lightweight REPL (Read–eval–print loop). Start the REPL with `npm start` within the source directory, or `gauss` if installed globally (via `npm install -g gauss`).
 
 For example, using the `help()` function and analyzing a data file from the Gauss REPL:
 ```javascript
@@ -53,10 +53,10 @@ For example, using the `help()` function and analyzing a data file from the Gaus
     gauss> help()
     Gauss 0.2.5
         /* https://github.com/stackd/gauss#api */
-        Functions: print, inspect, cwd, help
+        Functions: print, inspect, cwd, clear, help
         Usage:
           var set = new Vector(1, 2, 3);
-          var numbers = new gauss.TimeSeries();
+          var times = new gauss.TimeSeries();
     { version: '0.2.5',
       Vector: [Function],
       TimeSeries: [Function] }
