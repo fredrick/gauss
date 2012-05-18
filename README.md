@@ -43,6 +43,40 @@ Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility
     </script>
 ```
 
+###Using the REPL console
+
+To experiment with Gauss or to quickly start a Node.js command-line environment for number crunching, Gauss ships with a lightweight REPL (Read–eval–print loop). Start the REPL with `npm start` within the source directory, or if installed globally (via `npm install -g gauss`), `gauss`.
+
+For example, using the `help()` function and analyzing a data file from the Gauss REPL:
+
+```javascript
+    $ gauss
+    gauss> help()
+    Gauss 0.2.5
+        https://github.com/stackd/gauss#api 
+        Functions: print, inspect, cwd, help
+        Usage:
+          var set = new Vector(1, 2, 3);
+          var numbers = new gauss.TimeSeries();
+    { version: '0.2.5',
+      Vector: [Function],
+      TimeSeries: [Function] }
+    gauss> var fs = require('fs');
+    gauss> var data = fs.readFileSync('data.txt').toString();
+    gauss> data = data.toString().split('\n');
+    [ '8',
+      '6',
+      '7',
+      '5',
+      '3',
+      '0',
+      '9' ]
+    gauss> data = data.map(function(line) { return parseInt(line) });
+    gauss> var set = new Vector(data);
+    gauss> set.mean()
+    5.428571428571429
+```
+
 ##API
 
 Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!

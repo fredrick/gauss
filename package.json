@@ -16,7 +16,11 @@
   "devDependencies": {
       "vows": "latest"
   },
+  "bin": {
+    "gauss": "./bin/gauss"
+  },
   "scripts": {
-    "test": "node_modules/.bin/vows --spec test/*"
+    "test": "node_modules/.bin/vows --spec test/*",
+    "start": "./bin/gauss"
   }
 }
