@@ -57,7 +57,6 @@ For example, using the `help()` function and analyzing a data file from the Gaus
         Usage:
           var set = new Vector(1, 2, 3);
           var numbers = new gauss.TimeSeries();
-```javascript
     { version: '0.2.5',
       Vector: [Function],
       TimeSeries: [Function] }
@@ -75,7 +74,7 @@ For example, using the `help()` function and analyzing a data file from the Gaus
     gauss> var set = new Vector(data);
     gauss> set.mean()
     5.428571428571429
-```
+
 
 ##API
 
