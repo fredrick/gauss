@@ -21,7 +21,7 @@ Getting started with Gauss + Node.js is easy:
     $ npm install gauss
 
 ```javascript
-    var gauss = require('gauss');
+var gauss = require('gauss');
 ```
 
 ###Installing development dependencies and running tests
@@ -53,31 +53,31 @@ To experiment with Gauss or to quickly start a Node.js command-line environment 
 
 For example, using the `help()` function and analyzing a data file from the Gauss REPL:
 ```javascript
-    $ gauss
-    gauss> help()
-    Gauss 0.2.5
-        /* https://github.com/stackd/gauss#api */
-        Functions: print, inspect, cwd, clear, help
-        Usage:
-          var set = new Vector(1, 2, 3);
-          var times = new gauss.TimeSeries();
-    { version: '0.2.5',
-      Vector: [Function],
-      TimeSeries: [Function] }
-    gauss> var fs = require('fs');
-    gauss> var data = fs.readFileSync('data.txt').toString();
-    gauss> data = data.split('\n');
-    [ '8',
-      '6',
-      '7',
-      '5',
-      '3',
-      '0',
-      '9' ]
-    gauss> data = data.map(function(line) { return parseInt(line) });
-    gauss> var set = new Vector(data);
-    gauss> set.mean()
-    5.428571428571429
+$ gauss
+gauss> help()
+Gauss 0.2.5
+    /* https://github.com/stackd/gauss#api */
+    Functions: print, inspect, cwd, clear, help
+    Usage:
+      var set = new Vector(1, 2, 3);
+      var times = new gauss.TimeSeries();
+{ version: '0.2.5',
+  Vector: [Function],
+  TimeSeries: [Function] }
+gauss> var fs = require('fs');
+gauss> var data = fs.readFileSync('data.txt').toString();
+gauss> data = data.split('\n');
+[ '8',
+  '6',
+  '7',
+  '5',
+  '3',
+  '0',
+  '9' ]
+gauss> data = data.map(function(line) { return parseInt(line) });
+gauss> var set = new Vector(data);
+gauss> set.mean()
+5.428571428571429
 ```
 
 ##API
@@ -87,16 +87,16 @@ Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis.
 ###Instantiation
 
 ```javascript
-    // List of numbers
-    var set = new gauss.Vector(5, 1, 3, 2, 21);
-    // From a regular Array
-    var numbers = new gauss.Vector([8, 6, 7, 5, 3, 0, 9]);
-    // Convert an Array to a Vector with helper method toVector()
-    var vanilla = [4, 1, 2, 5, 6];
-    var chocolate = vanilla.toVector();
-    // After instantiation, Gauss objects can be conveniently used like any Array
-    numbers[0] = 2;
-    set[1] = 7;
+// List of numbers
+var set = new gauss.Vector(5, 1, 3, 2, 21);
+// From a regular Array
+var numbers = new gauss.Vector([8, 6, 7, 5, 3, 0, 9]);
+// Convert an Array to a Vector with helper method toVector()
+var vanilla = [4, 1, 2, 5, 6];
+var chocolate = vanilla.toVector();
+// After instantiation, Gauss objects can be conveniently used like any Array
+numbers[0] = 2;
+set[1] = 7;
 ```
 
 *Note: To prevent unintended scope/prototype pollution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array data type.
@@ -109,27 +109,27 @@ All of Gauss's methods accept an *optional* [callback][3]:
 [3]: http://en.wikipedia.org/wiki/Callback_(computer_programming)
 
 ```javascript
-    set.min();
-    set.min(function(result) {
-        result / 2;
-        /* Do more things with the minimum*/
-    });
+set.min();
+set.min(function(result) {
+    result / 2;
+    /* Do more things with the minimum*/
+});
 ```
 
 In addition, for methods that return another Vector, method chaining makes it easy to perform calculations that flow through each other:
 
 ```javascript
-    set.quantile(4).stdev(); // Find the standard deviation of data set's quartiles
+set.quantile(4).stdev(); // Find the standard deviation of data set's quartiles
 ```
 
 Finally, you can mix and match both callbacks and chaining:
 
 ```javascript
-    set.quantile(4).stdev(function(stdev) {
-        if (stdev > 1) {
-            /* Do something awesome */
-        }
-    });
+set.quantile(4).stdev(function(stdev) {
+    if (stdev > 1) {
+        /* Do something awesome */
+    }
+});
 ```
 
 ###Vector
@@ -159,17 +159,17 @@ Returns the product of the numbers.
 Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
 
 ```javascript
-    var Vector = require('gauss').Vector,
-        digits = new Vector();
-    // Push some numbers in
-    digits.push(1, 2, 3).sum();
-    > 6
-    // Keep on pushing, sum is updated as numbers are pushed
-     digits.push(4, 5, 6);
-    > [ 1, 2, 3, 4, 5, 6 ]
-    // Chain the pushes
-    digits.push(7, 8, 9).push(10);
-    > [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+var Vector = require('gauss').Vector,
+    digits = new Vector();
+// Push some numbers in
+digits.push(1, 2, 3).sum();
+> 6
+// Keep on pushing; sum is updated as numbers are pushed
+ digits.push(4, 5, 6);
+> [ 1, 2, 3, 4, 5, 6 ]
+// Chain the pushes
+digits.push(7, 8, 9).push(10);
+> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 ```
 *Note: Streaming calculations like sum(), product(), variance(), and functions dependent on streaming capable functions benefit from O(1) amortized performance.*
 
@@ -226,22 +226,22 @@ Returns a Vector which is a percentile subset of values occurring within a data 
 Returns an `Object` containing the (frequency) distribution of values within the Vector. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
 
 ```javascript
-    set.distribution();
-    > {
-        1: 1,
-        2: 1,
-        3: 1,
-        5: 1,
-        21: 1
-      }
-    set.distribution('relative');
-    > {
-        1: 0.2,
-        2: 0.2,
-        3: 0.2,
-        5: 0.2,
-        21: 0.2
-      }
+set.distribution();
+> {
+    1: 1,
+    2: 1,
+    3: 1,
+    5: 1,
+    21: 1
+  }
+set.distribution('relative');
+> {
+    1: 0.2,
+    2: 0.2,
+    3: 0.2,
+    5: 0.2,
+    21: 0.2
+  }
 ```
 
 **<a name="vector-quantile" href="#vector-quantile">.quantile(quantity, callback)</a>**
@@ -249,7 +249,7 @@ Returns an `Object` containing the (frequency) distribution of values within the
 Returns a Vector of values that divide a frequency distribution into equal groups, each containing the same fraction of the total data set.
 
 ```javascript
-    set.quantile(4); // Quartiles
+set.quantile(4); // Quartiles
 ```
 
 **<a name="vector-sma" href="#vector-sma">.sma(period, callback)</a>**
@@ -257,24 +257,24 @@ Returns a Vector of values that divide a frequency distribution into equal group
 Returns a Vector of the simple moving average (SMA); unweighted means of the previous n data points. `period` is the length of observation window for moving average.
 
 ```javascript
-    var prices = [22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
-    22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
-    22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
-    23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
-    23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725];
+var prices = [22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725];
 
-    prices = prices.toVector();
+prices = prices.toVector();
 
-    // 10-period SMA
-    prices.sma(10);
-    > [ 22.22475, 22.21283, 22.232689999999998,
-        22.26238, 22.30606, 22.42324,
-        22.61499, 22.76692, 22.90693,
-        23.07773, 23.211779999999997, 23.37861,
-        23.52657, 23.653779999999998, 23.711389999999998,
-        23.68557, 23.61298, 23.50573,
-        23.43225, 23.27734, 23.13121
-      ]
+// 10-period SMA
+prices.sma(10);
+> [ 22.22475, 22.21283, 22.232689999999998,
+    22.26238, 22.30606, 22.42324,
+    22.61499, 22.76692, 22.90693,
+    23.07773, 23.211779999999997, 23.37861,
+    23.52657, 23.653779999999998, 23.711389999999998,
+    23.68557, 23.61298, 23.50573,
+    23.43225, 23.27734, 23.13121
+  ]
 ```
 
 **<a name="vector-ema" href="#vector-ema">.ema(options, callback)</a>**
@@ -287,30 +287,30 @@ Returns a Vector of the exponential moving average (EMA); weighted means of the 
 - Object.ratio Function returning a Number to be used as smoothing ratio
 
 ```javascript
-    // 10-period EMA
-    prices.ema(10);
-    > [ 22.22475, 22.21192272727273, 22.24477314049587,
-        22.269650751314803, 22.331696069257568, 22.51789678393801,
-        22.796806459585646, 22.970659830570074, 23.127339861375514,
-        23.27720534112542, 23.34204073364807, 23.429396963893875,
-        23.509906606822263, 23.536050860127308, 23.47258706737689,
-        23.40440760058109, 23.390151673202713, 23.261124096256765,
-        23.231392442391897, 23.080684725593372, 22.91556023003094
-      ]
+// 10-period EMA
+prices.ema(10);
+> [ 22.22475, 22.21192272727273, 22.24477314049587,
+    22.269650751314803, 22.331696069257568, 22.51789678393801,
+    22.796806459585646, 22.970659830570074, 23.127339861375514,
+    23.27720534112542, 23.34204073364807, 23.429396963893875,
+    23.509906606822263, 23.536050860127308, 23.47258706737689,
+    23.40440760058109, 23.390151673202713, 23.261124096256765,
+    23.231392442391897, 23.080684725593372, 22.91556023003094
+  ]
 
-    // 10-period Welles Wilder EMA
-    prices.ema({
-        period: 10,
-        ratio: function(n) { return 1 / n; }
-    });
-    > [ 22.22475, 22.217695, 22.2351855,
-        22.24982695, 22.285934255, 22.3929208295,
-        22.55881874655, 22.678236871895, 22.793653184705498,
-        22.90944786623495, 22.981883079611453, 23.065944771650308,
-        23.146570294485276, 23.19728326503675, 23.196254938533073,
-        23.186389444679765, 23.20035050021179, 23.14836545019061,
-        23.14328890517155, 23.069210014654395, 22.979539013188955
-      ]
+// 10-period Welles Wilder EMA
+prices.ema({
+    period: 10,
+    ratio: function(n) { return 1 / n; }
+});
+> [ 22.22475, 22.217695, 22.2351855,
+    22.24982695, 22.285934255, 22.3929208295,
+    22.55881874655, 22.678236871895, 22.793653184705498,
+    22.90944786623495, 22.981883079611453, 23.065944771650308,
+    23.146570294485276, 23.19728326503675, 23.196254938533073,
+    23.186389444679765, 23.20035050021179, 23.14836545019061,
+    23.14328890517155, 23.069210014654395, 22.979539013188955
+  ]
 ```
 
 **<a name="vector-delta" href="#vector-delta">.delta(callback)</a>**
@@ -325,50 +325,50 @@ Within the declared function scope, `this` is attached to the Vector being exten
 To maintain chainability, return `this`.
 
 ```javascript
-    // Instantiate a new Vector with extensions
-    var set = new Vector(14, 6, 9, 3, 18,
-        7, 11, 1, 2, 20,
-        12, 16, 8, 4, 5,
-        19, 15, 17, 10, 13
-    ).extend({
-        'head': function() {
-            return this[0];
-        },
-        'tail': function() {
-            return this.slice(1);
-        }
-    });
-    set.head()
-    > 14
-    set.tail()
-    > [ 6, 9, 3, 18,
-        7, 11, 1, 2, 20,
-        12, 16, 8, 4, 5,
-        19, 15, 17, 10, 13
-      ]
-    // Extend instantiated objects
-    set.extend({
-        // Distribution of deltas
-        'ddist': function(format) {
-            return this.delta().distribution(format);
-        }
-    });
-    set.ddist('relative')
-    > { 
-        '1': 0.10526315789473684,
-        '2': 0.05263157894736842,
-        '3': 0.10526315789473684,
-        '4': 0.10526315789473684,
-        '14': 0.05263157894736842,
-        '15': 0.05263157894736842,
-        '18': 0.05263157894736842,
-        '-11': 0.05263157894736842,
-        '-10': 0.05263157894736842,
-        '-8': 0.15789473684210525,
-        '-7': 0.05263157894736842,
-        '-6': 0.05263157894736842,
-        '-4': 0.10526315789473684
-      }
+// Instantiate a new Vector with extensions
+var set = new Vector(14, 6, 9, 3, 18,
+    7, 11, 1, 2, 20,
+    12, 16, 8, 4, 5,
+    19, 15, 17, 10, 13
+).extend({
+    'head': function() {
+        return this[0];
+    },
+    'tail': function() {
+        return this.slice(1);
+    }
+});
+set.head()
+> 14
+set.tail()
+> [ 6, 9, 3, 18,
+    7, 11, 1, 2, 20,
+    12, 16, 8, 4, 5,
+    19, 15, 17, 10, 13
+  ]
+// Extend instantiated objects
+set.extend({
+    // Distribution of deltas
+    'ddist': function(format) {
+        return this.delta().distribution(format);
+    }
+});
+set.ddist('relative')
+> { 
+    '1': 0.10526315789473684,
+    '2': 0.05263157894736842,
+    '3': 0.10526315789473684,
+    '4': 0.10526315789473684,
+    '14': 0.05263157894736842,
+    '15': 0.05263157894736842,
+    '18': 0.05263157894736842,
+    '-11': 0.05263157894736842,
+    '-10': 0.05263157894736842,
+    '-8': 0.15789473684210525,
+    '-7': 0.05263157894736842,
+    '-6': 0.05263157894736842,
+    '-4': 0.10526315789473684
+  }
 ```
 
 **<a name="vector-copy" href="#vector-copy">.copy(callback)</a>**
