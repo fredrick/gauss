@@ -331,10 +331,10 @@ var set = new Vector(14, 6, 9, 3, 18,
     12, 16, 8, 4, 5,
     19, 15, 17, 10, 13
 ).extend({
-    'head': function() {
+    head: function() {
         return this[0];
     },
-    'tail': function() {
+    tail: function() {
         return this.slice(1);
     }
 });
@@ -349,7 +349,7 @@ set.tail()
 // Extend instantiated objects
 set.extend({
     // Distribution of deltas
-    'ddist': function(format) {
+    ddist: function(format) {
         return this.delta().distribution(format);
     }
 });

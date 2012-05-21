@@ -403,10 +403,10 @@ vows.describe('Vector').addBatch({
   },
   'Extend': {
     topic: set.extend({
-      'identity': function() {
+      identity: function() {
         return this;
       },
-      'tail': function() {
+      tail: function() {
         return this.slice(1);
       }
     }),
