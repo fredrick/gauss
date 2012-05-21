@@ -321,7 +321,7 @@ Returns a Vector of values containing the sequential difference between numbers 
 
 Returns a Vector extended with named functions.
 
-Within the declared function scope, `this` is attached to the Vector being extended and may have zero or more arguments.
+Within the function body, `this` is attached to the Vector being extended and the function may take zero or more arguments.
 To maintain chainability, return `this`.
 
 ```javascript
