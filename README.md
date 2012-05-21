@@ -131,23 +131,29 @@ Finally, you can mix and match both callbacks and chaining:
 
 ###Vector
 
+**<a name="vector-min" href="#vector-min">.min(callback)</a>**
+
+Returns the smallest number.
+
+**<a name="vector-max" href="#vector-max">.max(callback)</a>**
+
+Returns the largest number.
+
 **<a name="vector-equal" href="#vector-equal">.equal(callback)</a>**
 
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
-**<a name="vector-copy" href="#vector-copy">.copy(callback)</a>**
+**<a name="vector-sum" href="#vector-sum">.sum(callback)</a>**
 
-Returns a copy of the data set.
+Returns the sum of the numbers.
 
-**<a name="vector-clone" href="#vector-clone">.clone(callback)</a>**
+**<a name="vector-product" href="#vector-product">.product(callback)</a>**
 
-Returns another instance of the Vector object and data.
+Returns the product of the numbers.
 
 **<a name="vector-push" href="#vector-push">.push(number1, ..., numberN, callback)</a>**
 
 Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
-
-*Note: Streaming calculations like sum() and functions dependent on streaming capable functions benefit from O(1) amortized performance.*
 
 ```javascript
     var Vector = require('gauss').Vector,
@@ -162,22 +168,7 @@ Returns the updated Vector with one or more elements appended to the end; perfor
     digits.push(7, 8, 9).push(10);
     > [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 ```
-
-**<a name="vector-min" href="#vector-min">.min(callback)</a>**
-
-Returns the smallest number.
-
-**<a name="vector-max" href="#vector-max">.max(callback)</a>**
-
-Returns the largest number.
-
-**<a name="vector-sum" href="#vector-sum">.sum(callback)</a>**
-
-Returns the sum of the numbers.
-
-**<a name="vector-product" href="#vector-product">.product(callback)</a>**
-
-Returns the product of the numbers.
+*Note: Streaming calculations like sum(), product(), variance(), and functions dependent on streaming capable functions benefit from O(1) amortized performance.*
 
 **<a name="vector-range" href="#vector-range">.range(callback)</a>**
 
@@ -322,6 +313,68 @@ Returns a Vector of the exponential moving average (EMA); weighted means of the 
 **<a name="vector-delta" href="#vector-delta">.delta(callback)</a>**
 
 Returns a Vector of values containing the sequential difference between numbers in a sequence.
+
+**<a name="vector-extend" href="#vector-extend">.extend(methods, callback)</a>**
+
+Returns the Vector extended with named functions.
+
+Within the declared function scope, `this` is attached to the Vector being extended and may have zero or more arguments.
+To maintain chainability, return `this`.
+
+```javascript
+    // Instantiate a new Vector with extensions
+    var set = new Vector(14, 6, 9, 3, 18,
+        7, 11, 1, 2, 20,
+        12, 16, 8, 4, 5,
+        19, 15, 17, 10, 13
+    ).extend({
+        'head': function() {
+            return this[0];
+        },
+        'tail': function() {
+            return this.slice(1);
+        }
+    });
+    set.head()
+    > 14
+    set.tail()
+    > [ 6, 9, 3, 18,
+        7, 11, 1, 2, 20,
+        12, 16, 8, 4, 5,
+        19, 15, 17, 10, 13
+      ]
+    // Extend instantiated objects
+    set.extend({
+        // Distribution of deltas
+        'ddist': function(format) {
+            return this.delta().distribution(format);
+        }
+    });
+    set.ddist('relative')
+    > { 
+        '1': 0.10526315789473684,
+        '2': 0.05263157894736842,
+        '3': 0.10526315789473684,
+        '4': 0.10526315789473684,
+        '14': 0.05263157894736842,
+        '15': 0.05263157894736842,
+        '18': 0.05263157894736842,
+        '-11': 0.05263157894736842,
+        '-10': 0.05263157894736842,
+        '-8': 0.15789473684210525,
+        '-7': 0.05263157894736842,
+        '-6': 0.05263157894736842,
+        '-4': 0.10526315789473684
+      }
+```
+
+**<a name="vector-copy" href="#vector-copy">.copy(callback)</a>**
+
+Returns a copy of the data set.
+
+**<a name="vector-clone" href="#vector-clone">.clone(callback)</a>**
+
+Returns another instance of the Vector object and data.
 
 ###Math
 
