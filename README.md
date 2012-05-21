@@ -20,6 +20,10 @@ Getting started with Gauss + Node.js is easy:
 
     $ npm install gauss
 
+```javascript
+    var gauss = require('gauss');
+```
+
 ###Installing development dependencies and running tests
 
 To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatically resolve this:
@@ -83,7 +87,6 @@ Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis.
 ###Instantiation
 
 ```javascript
-    var gauss = require('gauss');
     // List of numbers
     var set = new gauss.Vector(5, 1, 3, 2, 21);
     // From a regular Array
