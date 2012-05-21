@@ -319,7 +319,7 @@ Returns a Vector of values containing the sequential difference between numbers 
 
 **<a name="vector-extend" href="#vector-extend">.extend(methods, callback)</a>**
 
-Returns the Vector extended with named functions.
+Returns a Vector extended with named functions.
 
 Within the declared function scope, `this` is attached to the Vector being extended and may have zero or more arguments.
 To maintain chainability, return `this`.
