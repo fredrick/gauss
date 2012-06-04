@@ -14,7 +14,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-      "vows": "latest"
+      "vows": "latest",
+      "uglify-js": "latest"
   },
   "bin": {
     "gauss": "./bin/gauss"
