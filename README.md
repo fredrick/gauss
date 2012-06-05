@@ -41,7 +41,7 @@ Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility
 ```html
     <script src="gauss.min.js" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-        var set = new gauss.Vector(5, 1, 3, 2, 21),
+        var set = new gauss.Vector(5, 1, 3, 2, 21), Vector = gauss.Vector, TimeSeries = gauss.TimeSeries,
             numbers = new Vector([8, 6, 7, 5, 3, 0, 9]),
             times = new TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
     </script>
