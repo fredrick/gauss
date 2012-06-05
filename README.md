@@ -1,4 +1,6 @@
-#Gauss [![Build Status](https://secure.travis-ci.org/stackd/gauss.png)](http://travis-ci.org/stackd/gauss)
+Gauss [![Build Status](https://secure.travis-ci.org/stackd/gauss.png)](http://travis-ci.org/stackd/gauss)
+=============
+
 > JavaScript statistics, analytics, and set library - [Node.js](http://nodejs.org/) and web browser ready
 
 Evented, asynchronous, and fast, [Node.js][1] is an attractive platform for data mining, statistics, and data analysis.
@@ -7,14 +9,14 @@ both on Node.js and within the web browser.
 
 [1]: http://nodejs.org/
 
-##License
+## License
 MIT/X11 - See [LICENSE][2]
 
 [2]: http://github.com/stackd/gauss/blob/master/LICENSE
 
-##Getting started
+## Getting started
 
-###Install with NPM (Node Package Manager)
+### Install with NPM (Node Package Manager)
 
 Getting started with Gauss + Node.js is easy:
 
@@ -24,7 +26,7 @@ Getting started with Gauss + Node.js is easy:
 var gauss = require('gauss');
 ```
 
-###Installing development dependencies and running tests
+### Installing development dependencies and running tests
 
 To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatically resolve this:
 
@@ -34,7 +36,7 @@ To invoke the tests:
 
     $ npm test
 
-###Using Gauss within a web browser
+### Using Gauss within a web browser
 
 Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility is listed [here](http://kangax.github.com/es5-compat-table/). Download and include [gauss.min.js](https://raw.github.com/stackd/gauss/master/gauss.min.js):
 
@@ -49,7 +51,7 @@ Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility
     </script>
 ```
 
-###Using the REPL console
+### Using the REPL console
 
 To experiment with Gauss or to quickly start a Node.js command-line environment for number crunching, Gauss ships with a lightweight REPL (Read–eval–print loop). Start the REPL with `npm start` within the source directory, or `gauss` if installed globally (via `npm install -g gauss`).
 
@@ -82,7 +84,7 @@ gauss> set.mean()
 5.428571428571429
 ```
 
-##API
+## API
 
 Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
 
@@ -104,7 +106,7 @@ set[1] = 7;
 *Note: To prevent unintended scope/prototype pollution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array data type.
 Use the .toArray() method of any Gauss object to a convert to a vanilla Array. Gauss adds a toVector() convenience method to the Array prototype to facilitate converting to Vectors.*
 
-###Callbacks and method chaining
+### Callbacks and method chaining
 
 All of Gauss's methods accept an *optional* [callback][3]:
 
@@ -134,7 +136,7 @@ set.quantile(4).stdev(function(stdev) {
 });
 ```
 
-###Vector
+### Vector
 
 **<a name="vector-min" href="#vector-min">.min(callback)</a>**
 
@@ -381,7 +383,7 @@ Returns a copy of the data set.
 
 Returns another instance of the Vector object and data.
 
-###Math
+### Math
 
 `Vector` supports applying all the [Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math#Methods) object methods to an entire Vector set of numbers.
 
@@ -394,7 +396,7 @@ For example, applying `pow` primitive method on a set to calculate the quadratic
     > 9.797958971132712
 ```
 
-###TimeSeries
+### TimeSeries
 
 Perform time series analysis. TimeSeries currently accepts time in epoch milliseconds followed by a numeric value.
 
