@@ -1,6 +1,6 @@
 Gauss
-[![Build Status](https://secure.travis-ci.org/stackd/gauss.png)](http://travis-ci.org/stackd/gauss)
 =============
+[![Build Status](https://secure.travis-ci.org/stackd/gauss.png)](http://travis-ci.org/stackd/gauss)
 
 > JavaScript statistics, analytics, and set library - [Node.js](http://nodejs.org/) and web browser ready
 
