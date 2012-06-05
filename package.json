@@ -21,7 +21,8 @@
     "gauss": "./bin/gauss"
   },
   "scripts": {
+    "start": "./bin/gauss",
     "test": "node_modules/.bin/vows --spec test/*",
-    "start": "./bin/gauss"
+    "build": "node build.js"
   }
 }
