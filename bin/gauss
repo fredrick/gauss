@@ -33,6 +33,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var util = require('util'),
     repl = require('repl'),
+    exec = require('child_process').exec,
     gauss = require('../lib/gauss');
     Vector = require('../lib/vector');
     TimeSeries = require('../lib/timeseries');
@@ -47,10 +48,22 @@ session.context.print = console.log;
 session.context.inspect = util.inspect;
 session.context.cwd = process.cwd;
 
+session.context.install = function(name) {
+  exec('npm install ' + name.toString(), function(error, stdout, stderr) {
+    process.stdout.write(stdout + '\r');
+  });
+};
+
+session.context.uninstall = function(name) {
+  exec('npm uninstall ' + name.toString(), function(error, stdout, stderr) {
+    process.stdout.write(stdout);
+  });
+};
+
 session.context.help = function(command) {
   var banner = 'Gauss '+ gauss.version +'\n \
   /* https://github.com/stackd/gauss#api */ \n \
-  Functions: print, inspect, cwd, clear, help\n \
+  Functions: print, inspect, cwd, clear, install, uninstall, help\n \
   Usage:\n \
     var set = new Vector(1, 2, 3);\n \
     var times = new gauss.TimeSeries();';

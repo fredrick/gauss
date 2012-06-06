@@ -62,7 +62,7 @@ $ gauss
 gauss> help()
 Gauss 0.2.5
     /* https://github.com/stackd/gauss#api */
-    Functions: print, inspect, cwd, clear, help
+    Functions: print, inspect, cwd, clear, install, uninstall, help
     Usage:
       var set = new Vector(1, 2, 3);
       var times = new gauss.TimeSeries();
