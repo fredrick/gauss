@@ -167,14 +167,13 @@ Returns the updated Vector with one or more elements appended to the end; perfor
 var Vector = require('gauss').Vector,
     digits = new Vector();
 // Push some numbers in
-digits.push(1, 2, 3).sum();
+digits.push(1, 2, 3);
+> 3
+digits.sum();
 > 6
 // Keep on pushing; sum is updated as numbers are pushed
  digits.push(4, 5, 6);
-> [ 1, 2, 3, 4, 5, 6 ]
-// Chain the pushes
-digits.push(7, 8, 9).push(10);
-> [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+> 6
 ```
 *Note: Streaming calculations like sum(), product(), variance(), and functions dependent on streaming capable functions benefit from O(1) amortized performance.*
 
