@@ -140,13 +140,15 @@ set.quantile(4).stdev(function(stdev) {
 ### Vector
 
 #### Vector.min
-
-    .min(callback)
-
+```
+.min(callback)
+```
 Returns the smallest number.
 
 #### Vector.max
-```.max(callback)```
+```
+.max(callback)
+```
 Returns the largest number.
 
 #### Vector.equal
