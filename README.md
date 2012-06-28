@@ -89,7 +89,7 @@ gauss> set.mean()
 
 Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
 
-###Instantiation
+### Instantiation
 
 ```javascript
 // List of numbers
@@ -139,28 +139,29 @@ set.quantile(4).stdev(function(stdev) {
 
 ### Vector
 
-**<a name="vector-min" href="#vector-min">.min(callback)</a>**
-
+#### Vector.min
+```.min(callback)```
 Returns the smallest number.
 
-**<a name="vector-max" href="#vector-max">.max(callback)</a>**
-
+#### Vector.max
+```.max(callback)```
 Returns the largest number.
 
-**<a name="vector-equal" href="#vector-equal">.equal(callback)</a>**
-
+#### Vector.equal
+```.equal(callback)```
+```Vector
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
-**<a name="vector-sum" href="#vector-sum">.sum(callback)</a>**
-
+#### Vector.equal
+```.sum(callback)```
 Returns the sum of the numbers.
 
-**<a name="vector-product" href="#vector-product">.product(callback)</a>**
-
+#### Vector.product
+```.product(callback)```
 Returns the product of the numbers.
 
-**<a name="vector-push" href="#vector-push">.push(number1, ..., numberN, callback)</a>**
-
+#### Vector.push
+```.push(number1, ..., numberN, callback)```
 Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
 
 ```javascript
@@ -177,56 +178,56 @@ digits.sum();
 ```
 *Note: Streaming calculations like sum(), product(), variance(), and functions dependent on streaming capable functions benefit from O(1) amortized performance.*
 
-**<a name="vector-range" href="#vector-range">.range(callback)</a>**
-
+#### Vector.range
+```.range(callback)```
 Returns the difference between the largest and smallest value in a data set.
 
-**<a name="vector-mean" href="#vector-mean">.mean(callback)</a>**
-
+#### Vector.mean
+```.mean(callback)```
 Returns the arithmetic mean.
 
-**<a name="vector-gmean" href="#vector-gmean">.gmean(callback)</a>**
-
+#### Vector.gmean
+```.gmean(callback)```
 Returns the geometric mean.
 
-**<a name="vector-hmean" href="#vector-hmean">.hmean(callback)</a>**
-
+#### Vector.hmean
+```.hmean(callback)```
 Returns the harmonic mean.
 
-**<a name="vector-qmean" href="#vector-qmean">.qmean(callback)</a>**
-
+#### Vector.qmean
+```.qmean(callback)```
 Returns the quadratic mean (RMS, root mean square).
 
-**<a name="vector-median" href="#vector-median">.median(callback)</a>**
-
+#### Vector.median
+```.median(callback)```
 Returns the median. If there are an even amount of numbers in the data set, returns the arithmetic mean of the two middle values.
 
-**<a name="vector-mode" href="#vector-mode">.mode(callback)</a>**
-
+#### Vector.mode
+```.mode(callback)```
 Returns the value(s) that occur the most frequently in a data set. If there is a tie, returns a Vector of values.
 
-**<a name="vector-variance" href="#vector-variance">.variance(callback)</a>**
-
+#### Vector.variance
+```.variance(callback)```
 Returns a measure of how far a set of numbers are spread out from each other.
 
-**<a name="vector-stdev" href="#vector-stdev">.stdev(percent, callback)</a>**
-
+#### Vector.stdev
+```.stdev(percent, callback)```
 Returns the standard deviation of data set. If a percent is given, returns the standard deviation with respect to a percentile of the population.
 
-**<a name="vector-frequency" href="#vector-frequency">.frequency(value, callback)</a>**
-
+#### Vector.frequency
+```.frequency(value, callback)```
 Returns the number of occurrences of value within a data set.
 
-**<a name="vector-percentile" href="#vector-percentile">.percentile(value, callback)</a>**
-
+#### Vector.percentile
+```.percentile(value, callback)```
 Returns the value that below which a certain percent of observations fall within the data set.
 
-**<a name="vector-density" href="#vector-density">.density(percent, callback)</a>**
-
+#### Vector.density
+```.density(percent, callback)```
 Returns a Vector which is a percentile subset of values occurring within a data set.
 
-**<a name="vector-distribution" href="#vector-distribution">.distribution(format, callback)</a>**
-
+#### Vector.distribution
+```.distribution(format, callback)```
 Returns an `Object` containing the (frequency) distribution of values within the Vector. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
 
 ```javascript
@@ -248,16 +249,16 @@ set.distribution('relative');
   }
 ```
 
-**<a name="vector-quantile" href="#vector-quantile">.quantile(quantity, callback)</a>**
-
+#### Vector.quantile
+```.quantile(quantity, callback)```
 Returns a Vector of values that divide a frequency distribution into equal groups, each containing the same fraction of the total data set.
 
 ```javascript
 set.quantile(4); // Quartiles
 ```
 
-**<a name="vector-sma" href="#vector-sma">.sma(period, callback)</a>**
-
+#### Vector.sma
+```.sma(period, callback)```
 Returns a Vector of the simple moving average (SMA); unweighted means of the previous n data points. `period` is the length of observation window for moving average.
 
 ```javascript
@@ -281,8 +282,8 @@ prices.sma(10);
   ]
 ```
 
-**<a name="vector-ema" href="#vector-ema">.ema(options, callback)</a>**
-
+#### Vector.ema
+```.ema(options, callback)```
 Returns a Vector of the exponential moving average (EMA); weighted means of the previous n data points.
 `options` is
 
@@ -317,12 +318,12 @@ prices.ema({
   ]
 ```
 
-**<a name="vector-delta" href="#vector-delta">.delta(callback)</a>**
-
+#### Vector.delta
+```.delta(callback)```
 Returns a Vector of values containing the sequential difference between numbers in a sequence.
 
-**<a name="vector-extend" href="#vector-extend">.extend(methods, callback)</a>**
-
+#### Vector.extend
+```.extend(methods, callback)```
 Returns a Vector extended with named functions.
 
 Within the function body, `this` is attached to the Vector being extended and the function may take zero or more arguments.
@@ -375,12 +376,12 @@ set.ddist('relative')
   }
 ```
 
-**<a name="vector-copy" href="#vector-copy">.copy(callback)</a>**
-
+#### Vector.copy
+```.copy(callback)```
 Returns a copy of the data set.
 
-**<a name="vector-clone" href="#vector-clone">.clone(callback)</a>**
-
+#### Vector.clone
+```.clone(callback)```
 Returns another instance of the Vector object and data.
 
 ### Math
@@ -405,10 +406,10 @@ Perform time series analysis. TimeSeries currently accepts time in epoch millise
     var set = new gauss.TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
 ```
 
-**<a name="timeseries-times" href="#timeseries-times">.times(callback)</a>**
-
+#### TimeSeries.times
+```.times(callback)```
 Returns a Vector of the times.
 
-**<a name="timeseries-values" href="#timeseries-values">.values(callback)</a>**
-
+#### TimeSeries.values
+```.values(callback)```
 Returns a Vector of the time series values.
