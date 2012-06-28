@@ -149,7 +149,6 @@ Returns the largest number.
 
 #### Vector.equal
 ```.equal(callback)```
-```Vector
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
 #### Vector.equal
