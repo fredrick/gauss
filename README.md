@@ -140,7 +140,9 @@ set.quantile(4).stdev(function(stdev) {
 ### Vector
 
 #### Vector.min
+
 ```.min(callback)```
+
 Returns the smallest number.
 
 #### Vector.max
