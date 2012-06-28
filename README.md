@@ -442,10 +442,10 @@ Returns another instance of the Vector object and data.
 For example, applying `pow` primitive method on a set to calculate the quadratic mean
 
 ```javascript
-    var squares = set.pow(2); // A Vector of set's members squared
-    > [25, 1, 9, 4, 441]
-    Math.sqrt(squares.sum() / squares.length); // Sum the squares -> find average -> quadratic mean (RMS)
-    > 9.797958971132712
+var squares = set.pow(2); // A Vector of set's members squared
+> [25, 1, 9, 4, 441]
+Math.sqrt(squares.sum() / squares.length); // Sum the squares -> find average -> quadratic mean (RMS)
+> 9.797958971132712
 ```
 
 ### TimeSeries
@@ -453,8 +453,8 @@ For example, applying `pow` primitive method on a set to calculate the quadratic
 Perform time series analysis. TimeSeries currently accepts time in epoch milliseconds followed by a numeric value.
 
 ```javascript
-    var gauss = require('gauss');
-    var set = new gauss.TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
+var gauss = require('gauss');
+var set = new gauss.TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
 ```
 
 #### TimeSeries.times
