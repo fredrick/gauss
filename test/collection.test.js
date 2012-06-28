@@ -1,0 +1,130 @@
+/**
+ * Test Collection data structure and methods.
+ */
+
+var vows = require('vows'),
+    assert = require('assert');
+
+var Collection = require('../lib/gauss').Collection;
+
+var set = new Collection([10, 82, 67, 17, 36, 3, 1, 61, 33, 20,
+18, 35, 15, 39, 52, 85, 17, 92, 88, 70,
+66, 85, 93, 81, 70, 41, 40, 22, 38, 52,
+86, 60, 64, 38, 87, 15, 92, 61, 93, 17,
+38, 68, 11, 98, 62, 75, 94, 63, 49, 97]);
+
+var majority = new Collection([10, 82, 67, 17, 36, 3, 1, 61, 33, 20,
+18, 35, 15, 39, 52, 85, 17, 92, 88, 70,
+66, 85, 93, 81, 70, 41, 40, 22, 38, 52,
+86, 60, 64, 38, 87, 15, 92, 61, 93, 17,
+38, 68, 11, 98, 62, 75, 94, 63, 17]);
+
+var heterogeneous = new Collection([72, -15, -50, 19, -33, -2, 60, -28, -13, -2,
+17, -20, 24, 13, 33, -68, 75, -4, -18, -4,
+19, 8, -12, -11, -29, -1, -18, 16, 14, 34,
+-26, 4, -26, 49, -72, 77, -31, 32, -76, 21,
+30, -57, 87, -36, 13, 19, -31, -14, 48]);
+
+var prices = new Collection([22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
+22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
+22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
+23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
+23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725]);
+
+var characters = new Collection('Loremipsumdolorsitamet,consecteturadipiscingelit.\
+Insuscipitadipiscingenim,atportamagnavenenatiseu.\
+Sedtortorlacus,ultricesatsuscipiteu,temporvitaemagna.'.toLowerCase().split(''));
+
+vows.describe('Collection').addBatch({
+  'Mode': {
+    '(Tie)': {
+      topic: set.mode().toArray(),
+      '[17, 38]': function(topic) {
+        assert.deepEqual(topic, [17, 38]);
+      }
+    },
+    '(Majority)': {
+      topic: majority.mode(),
+      '17': function(topic) {
+          assert.equal(topic, 17);
+      }
+    },
+    '(Uniform)': {
+      topic: new Collection([1, 2, 3, 4]).mode().toArray(),
+      '[1, 2, 3, 4]': function(topic) {
+        assert.deepEqual(topic, [1, 2, 3, 4]);
+      }
+    }
+  },
+  'Frequency': {
+    topic: set.frequency(17),
+    '3': function(topic) {
+      assert.equal(topic, 3);
+    }
+  },
+  'Distribution': {
+    '(Absolute Frequency)': {
+      topic: set.distribution(),
+      '{Element: Count}': function(topic) {
+        assert.deepEqual(topic, {
+          1: 1, 3: 1, 10: 1, 11: 1, 15: 2,
+          17: 3, 18: 1, 20: 1, 22: 1, 33: 1,
+          35: 1, 36: 1, 38: 3, 39: 1, 40: 1,
+          41: 1, 49: 1, 52: 2, 60: 1, 61: 2,
+          62: 1, 63: 1, 64: 1, 66: 1, 67: 1,
+          68: 1, 70: 2, 75: 1, 81: 1, 82: 1,
+          85: 2, 86: 1, 87: 1, 88: 1, 92: 2,
+          93: 2, 94: 1, 97: 1, 98: 1
+        });
+      }
+      },
+    '(Relative Frequency)': {
+      topic: set.distribution('relative'),
+      '{Element: Ratio}': function(topic) {
+        assert.deepEqual(topic, {
+          1: 0.02, 3: 0.02, 10: 0.02, 11: 0.02, 15: 0.04,
+          17: 0.06, 18: 0.02, 20: 0.02, 22: 0.02, 33: 0.02,
+          35: 0.02, 36: 0.02, 38: 0.06, 39: 0.02, 40: 0.02,
+          41: 0.02, 49: 0.02, 52: 0.04, 60: 0.02, 61: 0.04,
+          62: 0.02, 63: 0.02, 64: 0.02, 66: 0.02, 67: 0.02,
+          68: 0.02, 70: 0.04, 75: 0.02, 81: 0.02, 82: 0.02,
+          85: 0.04, 86: 0.02, 87: 0.02, 88: 0.02, 92: 0.04,
+          93: 0.04, 94: 0.02, 97: 0.02, 98: 0.02
+        });
+      }
+    }
+  },
+  'Equal': {
+    topic: new Collection(1, 2, 3).equal(new Collection(1, 2, 3)),
+    'True': function(topic) {
+      assert.equal(topic, true);
+    }
+  },
+  'Copy': {
+    topic: set.copy().toArray(),
+    'Copy of parent Collection': function(topic) {
+      assert.deepEqual(topic, set.toArray());
+    }
+  },
+  'Clone': {
+    topic: set.clone(),
+    'Instance of parent Collection': function(topic) {
+      assert.instanceOf(topic, Array);
+    }
+  },
+  'Extend': {
+    topic: set.extend({
+      identity: function() {
+        return this;
+      },
+      tail: function() {
+        return this.slice(1);
+      }
+    }),
+    'Extend Collection': function(topic) {
+      assert.deepEqual([topic.toArray(), topic.tail().toArray()],
+        [set.toArray(), set.slice(1).toArray()]
+      );
+    }
+  }
+}).export(module);
