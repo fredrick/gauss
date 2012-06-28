@@ -283,6 +283,14 @@ vows.describe('Vector').addBatch({
     }
   },
   'Push': {
+    '(Return)': {
+      topic: (function() {
+        return new Vector().push(1, 2, 3);
+      })(),
+      'Vector.push equivalent to Array.push': function(topic) {
+        assert.equal(topic, [].push(1, 2, 3));
+      }
+    },
     '(Values)': {
       topic: (function() {
         var numbers = new Vector();
