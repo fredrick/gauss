@@ -36,9 +36,15 @@ Insuscipitadipiscingenim,atportamagnavenenatiseu.\
 Sedtortorlacus,ultricesatsuscipiteu,temporvitaemagna.'.toLowerCase().split(''));
 
 vows.describe('Collection').addBatch({
+  'Index Of': {
+    topic: characters.indexOf(','),
+    '22': function(topic) {
+      assert.deepEqual(topic, 22);
+    }
+  },
   'Mode': {
     '(Tie)': {
-      topic: set.mode().toArray(),
+      topic: set.mode(),
       '[17, 38]': function(topic) {
         assert.deepEqual(topic, [17, 38]);
       }
@@ -50,7 +56,7 @@ vows.describe('Collection').addBatch({
       }
     },
     '(Uniform)': {
-      topic: new Collection([1, 2, 3, 4]).mode().toArray(),
+      topic: new Collection([1, 2, 3, 4]).mode(),
       '[1, 2, 3, 4]': function(topic) {
         assert.deepEqual(topic, [1, 2, 3, 4]);
       }
@@ -92,6 +98,40 @@ vows.describe('Collection').addBatch({
           93: 0.04, 94: 0.02, 97: 0.02, 98: 0.02
         });
       }
+    },
+    '(Absolute Character Frequency)': {
+      topic: characters.distribution(),
+      '{Character: Count}': function(topic) {
+        assert.deepEqual(topic, {
+          p: 7, r: 8, i: 18, t: 16,
+          s: 13, l: 5, d: 4, e: 14,
+          ',': 4, c: 8, o: 8, n: 9,
+          '.': 3, g: 4, u: 8, m: 7,
+          v: 2, a: 13
+        });
+      }
+    },
+    '(Relative Character Frequency)': {
+      topic: characters.distribution('relative'),
+      '{Character: Ratio}': function(topic) {
+        assert.deepEqual(topic, {
+          p: 0.046357615894039736, r: 0.052980132450331126,
+          i: 0.11920529801324503, t: 0.10596026490066225,
+          s: 0.08609271523178808, l: 0.033112582781456956,
+          d: 0.026490066225165563, e: 0.09271523178807947,
+          ',': 0.026490066225165563, c: 0.052980132450331126,
+          o: 0.052980132450331126, n: 0.059602649006622516,
+          '.': 0.019867549668874173, g: 0.026490066225165563,
+          u: 0.052980132450331126, m: 0.046357615894039736,
+          v: 0.013245033112582781, a: 0.08609271523178808
+        });
+      }
+    }
+  },
+  'Append': {
+    topic: new Collection(1, 2, 3).append(new Collection(1, 2, 3)),
+    '[1, 2, 3, 1, 2, 3]': function(topic) {
+      assert.deepEqual(topic, new Collection().push(1, 2, 3, 1, 2, 3));
     }
   },
   'Equal': {
@@ -101,9 +141,9 @@ vows.describe('Collection').addBatch({
     }
   },
   'Copy': {
-    topic: set.copy().toArray(),
+    topic: set.copy(),
     'Copy of parent Collection': function(topic) {
-      assert.deepEqual(topic, set.toArray());
+      assert.deepEqual(topic, set);
     }
   },
   'Clone': {
@@ -122,8 +162,8 @@ vows.describe('Collection').addBatch({
       }
     }),
     'Extend Collection': function(topic) {
-      assert.deepEqual([topic.toArray(), topic.tail().toArray()],
-        [set.toArray(), set.slice(1).toArray()]
+      assert.deepEqual([topic, topic.tail()],
+        [set, set.slice(1)]
       );
     }
   }
