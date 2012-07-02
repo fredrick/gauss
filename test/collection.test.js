@@ -35,6 +35,12 @@ var characters = new Collection('Loremipsumdolorsitamet,consecteturadipiscingeli
 Insuscipitadipiscingenim,atportamagnavenenatiseu.\
 Sedtortorlacus,ultricesatsuscipiteu,temporvitaemagna.'.toLowerCase().split(''));
 
+var people = new Collection(
+  { firstname: 'John', lastname: 'Smith' },
+  { firstname: 'Jane', lastname: 'Doe' },
+  { firstname: 'Susan', lastname: 'Baker' }
+);
+
 vows.describe('Collection').addBatch({
   'Index Of': {
     topic: characters.indexOf(','),
@@ -64,6 +70,20 @@ vows.describe('Collection').addBatch({
     topic: characters.lastIndexBy(function(e) { return e === ',' }),
     '133': function(topic) {
       assert.deepEqual(topic, characters.lastIndexOf(','));
+    }
+  },
+  'Find': {
+    '(Predicate)': {
+      topic: people.find(function(e) { return e.firstname === 'Jane' }),
+      'Condition by function': function(topic) {
+        assert.deepEqual(topic, { firstname: 'Jane', lastname: 'Doe' });
+      }
+    },
+    '(Key in Object)': {
+      topic: people.find({ firstname: 'John', lastname: 'Smith' }),
+      'Condition by Object key': function(topic) {
+        assert.deepEqual(topic, { firstname: 'John', lastname: 'Smith' });
+      }
     }
   },
   'Mode': {
