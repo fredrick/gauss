@@ -39,13 +39,31 @@ vows.describe('Collection').addBatch({
   'Index Of': {
     topic: characters.indexOf(','),
     '22': function(topic) {
-      assert.deepEqual(topic, 22);
+      assert.deepEqual(topic, characters.toArray().indexOf(','));
+    }
+  },
+  'Index By': {
+    topic: characters.indexBy(function(e) { return e === ',' }),
+    '22': function(topic) {
+      assert.deepEqual(topic, characters.indexOf(','));
     }
   },
   'Indices Of': {
     topic: heterogeneous.indicesOf(-2),
     '[5, 9]': function(topic) {
       assert.deepEqual(topic, [5, 9]);
+    }
+  },
+  'Indices By': {
+    topic: heterogeneous.indicesBy(function(e) { return e === -2 }),
+    '[5, 9]': function(topic) {
+      assert.deepEqual(topic, [5, 9]);
+    }
+  },
+  'Last Index By': {
+    topic: characters.lastIndexBy(function(e) { return e === ',' }),
+    '133': function(topic) {
+      assert.deepEqual(topic, characters.lastIndexOf(','));
     }
   },
   'Mode': {
