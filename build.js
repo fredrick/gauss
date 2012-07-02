@@ -6,8 +6,18 @@
 
 var exec = require('child_process').exec;
 
-(function(next) {
-  exec('node_modules/.bin/uglifyjs -nc lib/vector.js > gauss.min.js', next);
-})(function() {
+var collection = function(next) {
+  exec('node_modules/.bin/uglifyjs -nc lib/collection.js > gauss.min.js', next);
+};
+
+var vector = function(next) {
+  exec('node_modules/.bin/uglifyjs -nc lib/vector.js >> gauss.min.js', next);
+};
+
+var timeseries = function() {
   exec('node_modules/.bin/uglifyjs -nc lib/timeseries.js >> gauss.min.js');
-});
+};
+
+(function() {
+  collection(function() { return vector(timeseries); });
+})();
