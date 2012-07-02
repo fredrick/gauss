@@ -42,6 +42,12 @@ vows.describe('Collection').addBatch({
       assert.deepEqual(topic, 22);
     }
   },
+  'Indices Of': {
+    topic: heterogeneous.indicesOf(-2),
+    '[5, 9]': function(topic) {
+      assert.deepEqual(topic, [5, 9]);
+    }
+  },
   'Mode': {
     '(Tie)': {
       topic: set.mode(),
