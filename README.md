@@ -60,13 +60,14 @@ For example, using the `help()` function and analyzing a data file from the Gaus
 ```javascript
 $ gauss
 gauss> help()
-Gauss 0.2.5
-    /* https://github.com/stackd/gauss#api */
-    Functions: print, inspect, cwd, clear, install, uninstall, help
-    Usage:
-      var set = new Vector(1, 2, 3);
-      var times = new gauss.TimeSeries();
-{ version: '0.2.5',
+Gauss 0.2.6
+   /* https://github.com/stackd/gauss#api */ 
+   Functions: print, inspect, cwd, clear, install, uninstall, help
+   Usage:
+     var set = new Vector(1, 2, 3);
+     var times = new gauss.TimeSeries();
+{ version: '0.2.6',
+  Collection: [Function],
   Vector: [Function],
   TimeSeries: [Function] }
 gauss> var fs = require('fs');
