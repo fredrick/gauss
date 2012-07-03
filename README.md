@@ -23,7 +23,7 @@ Getting started with Gauss + Node.js is easy:
 
     $ npm install gauss
 
-```javascript
+``` javascript
 var gauss = require('gauss');
 ```
 
@@ -58,7 +58,7 @@ To experiment with Gauss or to quickly start a Node.js command-line environment 
 
 For example, using the `help()` function and analyzing a data file from the Gauss REPL:
 
-```javascript
+``` javascript
 $ gauss
 gauss> help()
 Gauss 0.2.6
@@ -93,7 +93,7 @@ Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis.
 
 ### Instantiation
 
-```javascript
+``` javascript
 // List of numbers
 var set = new gauss.Vector(5, 1, 3, 2, 21);
 // From a regular Array
@@ -115,7 +115,7 @@ All of Gauss's methods accept an *optional* [callback][3]:
 
 [3]: http://en.wikipedia.org/wiki/Callback_(computer_programming)
 
-```javascript
+``` javascript
 set.min();
 set.min(function(result) {
     result / 2;
@@ -125,30 +125,32 @@ set.min(function(result) {
 
 In addition, for methods that return another Vector, method chaining makes it easy to perform calculations that flow through each other:
 
-```javascript
+``` javascript
 set.quantile(4).stdev(); // Find the standard deviation of data set's quartiles
 ```
 
 Finally, you can mix and match both callbacks and chaining:
 
-    set.quantile(4).stdev(function(stdev) {
-        if (stdev > 1) {
-            /* Do something awesome */
-        }
-    });
+``` javascript
+set.quantile(4).stdev(function(stdev) {
+    if (stdev > 1) {
+        /* Do something awesome */
+    }
+});
+```
 
 ### Collection
 
 #### Collection.indexBy
-
-    .indexBy(predicate, callback)
-
+```
+.indexBy(predicate, callback)
+```
 Returns the first index of an element that matches a condition.
 
 #### Collection.indicesOf
-
-    .indicesOf(element, callback)
-
+```
+.indicesOf(element, callback)
+```
 Returns the indices of all elements that match a value.
 
 #### Collection.indicesBy
@@ -169,7 +171,7 @@ Returns the last index of an element that matches a condition.
 ```
 Returns all the elements that match a condition.
 
-```javascript
+``` javascript
 var people = new gauss.Collection(
   { firstname: 'John', lastname: 'Smith' },
   { firstname: 'Jane', lastname: 'Doe' },
@@ -225,7 +227,7 @@ Returns the product of the numbers.
 ```
 Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
 
-```javascript
+``` javascript
 var Vector = require('gauss').Vector,
     digits = new Vector();
 // Push some numbers in
@@ -317,7 +319,7 @@ Returns a Vector which is a percentile subset of values occurring within a data 
 ```
 Returns an `Object` containing the (frequency) distribution of values within the Vector. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
 
-```javascript
+``` javascript
 set.distribution();
 > {
     1: 1,
@@ -342,7 +344,7 @@ set.distribution('relative');
 ```
 Returns a Vector of values that divide a frequency distribution into equal groups, each containing the same fraction of the total data set.
 
-```javascript
+``` javascript
 set.quantile(4); // Quartiles
 ```
 
@@ -352,7 +354,7 @@ set.quantile(4); // Quartiles
 ```
 Returns a Vector of the simple moving average (SMA); unweighted means of the previous n data points. `period` is the length of observation window for moving average.
 
-```javascript
+``` javascript
 var prices = [22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
 22.2337, 22.4323, 22.2436, 22.2933, 22.1542, 22.3926,
 22.3816, 22.6109, 23.3558, 24.0519, 23.753, 23.8324,
@@ -384,7 +386,7 @@ Returns a Vector of the exponential moving average (EMA); weighted means of the 
 - Object.period Length of the observation window for moving average
 - Object.ratio Function returning a Number to be used as smoothing ratio
 
-```javascript
+``` javascript
 // 10-period EMA
 prices.ema(10);
 > [ 22.22475, 22.21192272727273, 22.24477314049587,
@@ -426,7 +428,7 @@ Returns a Vector extended with named functions.
 Within the function body, `this` is attached to the Vector being extended and the function may take zero or more arguments.
 To maintain chainability, return `this`.
 
-```javascript
+``` javascript
 // Instantiate a new Vector with extensions
 var set = new Vector(14, 6, 9, 3, 18,
     7, 11, 1, 2, 20,
@@ -491,7 +493,7 @@ Returns another instance of the Vector object and data.
 
 For example, applying `pow` primitive method on a set to calculate the quadratic mean
 
-```javascript
+``` javascript
 var squares = set.pow(2); // A Vector of set's members squared
 > [25, 1, 9, 4, 441]
 Math.sqrt(squares.sum() / squares.length); // Sum the squares -> find average -> quadratic mean (RMS)
@@ -502,7 +504,7 @@ Math.sqrt(squares.sum() / squares.length); // Sum the squares -> find average ->
 
 Perform time series analysis. TimeSeries currently accepts time in epoch milliseconds followed by a numeric value.
 
-```javascript
+``` javascript
 var gauss = require('gauss');
 var set = new gauss.TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
 ```
