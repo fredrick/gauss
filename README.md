@@ -41,15 +41,15 @@ To invoke the tests:
 
 Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility is listed [here](http://kangax.github.com/es5-compat-table/). Download and include [gauss.min.js](https://raw.github.com/stackd/gauss/master/gauss.min.js):
 
-```html
-    <script src="gauss.min.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8">
-        var Vector = gauss.Vector,
-            TimeSeries = gauss.TimeSeries;
-        var set = new gauss.Vector(5, 1, 3, 2, 21),
-            numbers = new Vector([8, 6, 7, 5, 3, 0, 9]),
-            times = new TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
-    </script>
+``` html
+<script src="gauss.min.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+    var Vector = gauss.Vector,
+        TimeSeries = gauss.TimeSeries;
+    var set = new gauss.Vector(5, 1, 3, 2, 21),
+        numbers = new Vector([8, 6, 7, 5, 3, 0, 9]),
+        times = new TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
+</script>
 ```
 
 ### Using the REPL console
