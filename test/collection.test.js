@@ -95,7 +95,7 @@ vows.describe('Collection').addBatch({
       }
     },
     '(Key in Object)': {
-      topic: people.findOne({ firstname: 'John', lastname: 'Smith' }),
+      topic: people.findOne({ lastname: 'Smith' }),
       'Condition by Object key': function(topic) {
         assert.deepEqual(topic, { firstname: 'John', lastname: 'Smith' });
       }

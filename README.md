@@ -142,33 +142,33 @@ set.quantile(4).stdev(function(stdev) {
 ### Collection
 
 #### Collection.indexBy
-```
-.indexBy(predicate, callback)
-```
+
+    .indexBy(predicate, callback)
+
 Returns the first index of an element that matches a condition.
 
 #### Collection.indicesOf
-```
-.indicesOf(element, callback)
-```
+
+    .indicesOf(element, callback)
+
 Returns the indices of all elements that match a value.
 
 #### Collection.indicesBy
-```
-.indicesBy(predicate, callback)
-```
+
+    .indicesBy(predicate, callback)
+
 Returns all indices of an element that match a condition.
 
 #### Collection.lastIndexBy
-```
-.lastIndexBy(predicate, callback)
-```
+
+    .lastIndexBy(predicate, callback)
+
 Returns the last index of an element that matches a condition.
 
 #### Collection.find
-```
-.find(predicate, callback)
-```
+
+    .find(predicate, callback)
+
 Returns all the elements that match a condition.
 
 ``` javascript
@@ -178,53 +178,78 @@ var people = new gauss.Collection(
   { firstname: 'Mike', lastname: 'Smith' },
   { firstname: 'Susan', lastname: 'Baker' }
 );
-
 // Using a predicate Function
 people.find(function(e) { return e.firstname === 'Jane' });
 > [{ firstname: 'Jane', lastname: 'Doe' }]
-
 // Using a condition Object
-people.find(function(e) { lastname: 'Smith' });
+people.find({ lastname: 'Smith' });
 > [{ firstname: 'John', lastname: 'Smith' },
   { firstname: 'Mike', lastname: 'Smith' }]
 ```
 
+#### Collection.findOne
+
+    .findOne(predicate, callback)
+
+Returns the first element that matches a condition.
+
+``` javascript
+// Using a predicate Function
+people.findOne(function(e) { return e.firstname === 'Jane' });
+> { firstname: 'Jane', lastname: 'Doe' }
+// Using a condition Object
+people.findOne({ lastname: 'Smith' });
+> { firstname: 'John', lastname: 'Smith' }
+```
+
+#### Collection.mode
+
+    .mode(callback)
+
+Returns the value(s) that occur the most frequently in a data set. If there is a tie, returns a Collection of values.
+
+#### Collection.frequency
+
+    .frequency(element, callback)
+
+Returns the number of occurrences of value within a data set.
+
 ### Vector
 
 #### Vector.min
-```
-.min(callback)
-```
+
+    .min(callback)
+
 Returns the smallest number.
 
 #### Vector.max
-```
-.max(callback)
-```
+
+    .max(callback)
+
 Returns the largest number.
 
 #### Vector.equal
-```
-.equal(callback)
-```
+
+    .equal(callback)
+
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
 #### Vector.equal
-```
-.sum(callback)
-```
+
+    .sum(callback)
+
 Returns the sum of the numbers.
 
 #### Vector.product
-```
-.product(callback)
-```
+
+    .product(callback)
+
 Returns the product of the numbers.
 
 #### Vector.push
-```
-.push(number1, ..., numberN, callback)
-```
+
+    .push(number1, ..., numberN, callback)
+
 Returns the updated Vector with one or more elements appended to the end; performs/maintains streaming calculations.
 
 ``` javascript
@@ -242,81 +267,81 @@ digits.sum();
 *Note: Streaming calculations like sum(), product(), variance(), and functions dependent on streaming capable functions benefit from O(1) amortized performance.*
 
 #### Vector.range
-```
-.range(callback)
-```
+
+    .range(callback)
+
 Returns the difference between the largest and smallest value in a data set.
 
 #### Vector.mean
-```
-.mean(callback)
-```
+
+    .mean(callback)
+
 Returns the arithmetic mean.
 
 #### Vector.gmean
-```
-.gmean(callback)
-```
+
+    .gmean(callback)
+
 Returns the geometric mean.
 
 #### Vector.hmean
-```
-.hmean(callback)
-```
+
+    .hmean(callback)
+
 Returns the harmonic mean.
 
 #### Vector.qmean
-```
-.qmean(callback)
-```
+
+    .qmean(callback)
+
 Returns the quadratic mean (RMS, root mean square).
 
 #### Vector.median
-```
-.median(callback)
-```
+
+    .median(callback)
+
 Returns the median. If there are an even amount of numbers in the data set, returns the arithmetic mean of the two middle values.
 
 #### Vector.mode
-```
-.mode(callback)
-```
+
+    .mode(callback)
+
 Returns the value(s) that occur the most frequently in a data set. If there is a tie, returns a Vector of values.
 
 #### Vector.variance
-```
-.variance(callback)
-```
+
+    .variance(callback)
+
 Returns a measure of how far a set of numbers are spread out from each other.
 
 #### Vector.stdev
-```
-.stdev(percent, callback)
-```
+
+    .stdev(percent, callback)
+
 Returns the standard deviation of data set. If a percent is given, returns the standard deviation with respect to a percentile of the population.
 
 #### Vector.frequency
-```
-.frequency(value, callback)
-```
+
+    .frequency(value, callback)
+
 Returns the number of occurrences of value within a data set.
 
 #### Vector.percentile
-```
-.percentile(value, callback)
-```
+
+    .percentile(value, callback)
+
 Returns the value that below which a certain percent of observations fall within the data set.
 
 #### Vector.density
-```
-.density(percent, callback)
-```
+
+    .density(percent, callback)
+
 Returns a Vector which is a percentile subset of values occurring within a data set.
 
 #### Vector.distribution
-```
-.distribution(format, callback)
-```
+
+    .distribution(format, callback)
+
 Returns an `Object` containing the (frequency) distribution of values within the Vector. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
 
 ``` javascript
@@ -339,9 +364,9 @@ set.distribution('relative');
 ```
 
 #### Vector.quantile
-```
-.quantile(quantity, callback)
-```
+
+    .quantile(quantity, callback)
+
 Returns a Vector of values that divide a frequency distribution into equal groups, each containing the same fraction of the total data set.
 
 ``` javascript
@@ -349,9 +374,9 @@ set.quantile(4); // Quartiles
 ```
 
 #### Vector.sma
-```
-.sma(period, callback)
-```
+
+    .sma(period, callback)
+
 Returns a Vector of the simple moving average (SMA); unweighted means of the previous n data points. `period` is the length of observation window for moving average.
 
 ``` javascript
@@ -376,9 +401,9 @@ prices.sma(10);
 ```
 
 #### Vector.ema
-```
-.ema(options, callback)
-```
+
+    .ema(options, callback)
+
 Returns a Vector of the exponential moving average (EMA); weighted means of the previous n data points.
 `options` is
 
@@ -414,15 +439,15 @@ prices.ema({
 ```
 
 #### Vector.delta
-```
-.delta(callback)
-```
+
+    .delta(callback)
+
 Returns a Vector of values containing the sequential difference between numbers in a sequence.
 
 #### Vector.extend
-```
-.extend(methods, callback)
-```
+
+    .extend(methods, callback)
+
 Returns a Vector extended with named functions.
 
 Within the function body, `this` is attached to the Vector being extended and the function may take zero or more arguments.
@@ -476,15 +501,15 @@ set.ddist('relative')
 ```
 
 #### Vector.copy
-```
-.copy(callback)
-```
+
+    .copy(callback)
+
 Returns a copy of the data set.
 
 #### Vector.clone
-```
-.clone(callback)
-```
+
+    .clone(callback)
+
 Returns another instance of the Vector object and data.
 
 ### Math
@@ -510,13 +535,13 @@ var set = new gauss.TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
 ```
 
 #### TimeSeries.times
-```
-.times(callback)
-```
+
+    .times(callback)
+
 Returns a Vector of the times.
 
 #### TimeSeries.values
-```
-.values(callback)
-```
+
+    .values(callback)
+
 Returns a Vector of the time series values.
