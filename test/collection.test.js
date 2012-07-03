@@ -38,6 +38,7 @@ Sedtortorlacus,ultricesatsuscipiteu,temporvitaemagna.'.toLowerCase().split(''));
 var people = new Collection(
   { firstname: 'John', lastname: 'Smith' },
   { firstname: 'Jane', lastname: 'Doe' },
+  { firstname: 'Mike', lastname: 'Smith' },
   { firstname: 'Susan', lastname: 'Baker' }
 );
 
@@ -80,9 +81,9 @@ vows.describe('Collection').addBatch({
       }
     },
     '(Key in Object)': {
-      topic: people.find({ firstname: 'John', lastname: 'Smith' }),
+      topic: people.find({ lastname: 'Smith' }),
       'Condition by Object key': function(topic) {
-        assert.deepEqual(topic, [{ firstname: 'John', lastname: 'Smith' }]);
+        assert.deepEqual(topic, [{ firstname: 'John', lastname: 'Smith' }, { firstname: 'Mike', lastname: 'Smith' }]);
       }
     }
   },

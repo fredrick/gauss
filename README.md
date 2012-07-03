@@ -57,6 +57,7 @@ Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility
 To experiment with Gauss or to quickly start a Node.js command-line environment for number crunching, Gauss ships with a lightweight REPL (Read–eval–print loop). Start the REPL with `npm start` within the source directory, or `gauss` if installed globally (via `npm install -g gauss`).
 
 For example, using the `help()` function and analyzing a data file from the Gauss REPL:
+
 ```javascript
 $ gauss
 gauss> help()
@@ -130,12 +131,60 @@ set.quantile(4).stdev(); // Find the standard deviation of data set's quartiles
 
 Finally, you can mix and match both callbacks and chaining:
 
+    set.quantile(4).stdev(function(stdev) {
+        if (stdev > 1) {
+            /* Do something awesome */
+        }
+    });
+
+### Collection
+
+#### Collection.indexBy
+
+    .indexBy(predicate, callback)
+
+Returns the first index of an element that matches a condition.
+
+#### Collection.indicesOf
+
+    .indicesOf(element, callback)
+
+Returns the indices of all elements that match a value.
+
+#### Collection.indicesBy
+```
+.indicesBy(predicate, callback)
+```
+Returns all indices of an element that match a condition.
+
+#### Collection.lastIndexBy
+```
+.lastIndexBy(predicate, callback)
+```
+Returns the last index of an element that matches a condition.
+
+#### Collection.find
+```
+.find(predicate, callback)
+```
+Returns all the elements that match a condition.
+
 ```javascript
-set.quantile(4).stdev(function(stdev) {
-    if (stdev > 1) {
-        /* Do something awesome */
-    }
-});
+var people = new gauss.Collection(
+  { firstname: 'John', lastname: 'Smith' },
+  { firstname: 'Jane', lastname: 'Doe' },
+  { firstname: 'Mike', lastname: 'Smith' },
+  { firstname: 'Susan', lastname: 'Baker' }
+);
+
+// Using a predicate Function
+people.find(function(e) { return e.firstname === 'Jane' });
+> [{ firstname: 'Jane', lastname: 'Doe' }]
+
+// Using a condition Object
+people.find(function(e) { lastname: 'Smith' });
+> [{ firstname: 'John', lastname: 'Smith' },
+  { firstname: 'Mike', lastname: 'Smith' }]
 ```
 
 ### Vector
