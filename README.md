@@ -214,6 +214,42 @@ Returns the value(s) that occur the most frequently in a data set. If there is a
 
 Returns the number of occurrences of value within a data set.
 
+#### Collection.distribution
+
+    .distribution(format, callback)
+
+Returns an `Object` containing the (frequency) distribution of values within the Collection. Default format: `absolute`; `relative` returns ratio of occurrences and total number of values in a data set. 
+
+``` javascript
+set.distribution();
+> {
+    1: 1,
+    2: 1,
+    3: 1,
+    5: 1,
+    21: 1
+  }
+set.distribution('relative');
+> {
+    1: 0.2,
+    2: 0.2,
+    3: 0.2,
+    5: 0.2,
+    21: 0.2
+  }
+```
+
+#### Collection.append
+
+    .append(that, callback)
+
+Return Collection appended with an Array.
+
+``` javascript
+var numbers = new Collection(1, 2, 3).append(new Collection(1, 2, 3);
+> [1, 2, 3, 1, 2, 3]
+```
+
 ### Vector
 
 #### Vector.min
