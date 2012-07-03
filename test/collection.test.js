@@ -76,13 +76,13 @@ vows.describe('Collection').addBatch({
     '(Predicate)': {
       topic: people.find(function(e) { return e.firstname === 'Jane' }),
       'Condition by function': function(topic) {
-        assert.deepEqual(topic, { firstname: 'Jane', lastname: 'Doe' });
+        assert.deepEqual(topic, [{ firstname: 'Jane', lastname: 'Doe' }]);
       }
     },
     '(Key in Object)': {
       topic: people.find({ firstname: 'John', lastname: 'Smith' }),
       'Condition by Object key': function(topic) {
-        assert.deepEqual(topic, { firstname: 'John', lastname: 'Smith' });
+        assert.deepEqual(topic, [{ firstname: 'John', lastname: 'Smith' }]);
       }
     }
   },
