@@ -86,6 +86,20 @@ vows.describe('Collection').addBatch({
       }
     }
   },
+  'Find One': {
+    '(Predicate)': {
+      topic: people.findOne(function(e) { return e.firstname === 'Jane' }),
+      'Condition by function': function(topic) {
+        assert.deepEqual(topic, { firstname: 'Jane', lastname: 'Doe' });
+      }
+    },
+    '(Key in Object)': {
+      topic: people.findOne({ firstname: 'John', lastname: 'Smith' }),
+      'Condition by Object key': function(topic) {
+        assert.deepEqual(topic, { firstname: 'John', lastname: 'Smith' });
+      }
+    }
+  },
   'Mode': {
     '(Tie)': {
       topic: set.mode(),
