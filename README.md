@@ -270,7 +270,7 @@ Returns the largest number.
 
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
-#### Vector.equal
+#### Vector.sum
 
     .sum(callback)
 
