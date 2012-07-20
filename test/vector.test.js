@@ -32,6 +32,7 @@ var prices = new Vector([22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
 23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725]);
 
 vows.describe('Vector').addBatch({
+  // Statistical methods
   'Minimum': {
     topic: set.min(),
     '1': function(topic) {
@@ -391,22 +392,23 @@ vows.describe('Vector').addBatch({
       }
     }
   },
+  // Utility methods
   'Equal': {
     topic: new Vector(1, 2, 3).equal(new Vector(1, 2, 3)),
     'True': function(topic) {
       assert.equal(topic, true);
     }
   },
-  'Copy': {
-    topic: set.copy().toArray(),
-    'Copy of parent Vector': function(topic) {
-      assert.deepEqual(topic, set.toArray());
-    }
-  },
   'Clone': {
     topic: set.clone(),
     'Instance of parent Vector': function(topic) {
       assert.instanceOf(topic, Array);
+    }
+  },
+  'Copy': {
+    topic: set.copy().toArray(),
+    'Copy of parent Vector': function(topic) {
+      assert.deepEqual(topic, set.toArray());
     }
   },
   'Extend': {
@@ -422,6 +424,20 @@ vows.describe('Vector').addBatch({
       assert.deepEqual([topic.toArray(), topic.tail().toArray()],
         [set.toArray(), set.slice(1).toArray()]
       );
+    }
+  },
+  // Collection methods
+  'Append': {
+    topic: (function() {
+      var appended = new Vector(1, 2, 3);
+      appended.append([1, 2, 3]);
+      return appended;
+    })(),
+    '[1, 2, 3, 1, 2, 3]': function(topic) {
+      assert.deepEqual(topic, new Vector(1, 2, 3, 1, 2, 3));
+    },
+    'Sum of numbers after append': function(topic) {
+      assert.equal(topic.sum(), new Vector(1, 2, 3, 1, 2, 3).sum());
     }
   }
 }).export(module);
