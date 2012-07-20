@@ -199,16 +199,76 @@ vows.describe('Collection').addBatch({
       assert.equal(topic, true);
     }
   },
+  'Clone': {
+    topic: set.clone(),
+    'Instance of parent Collection': function(topic) {
+      assert.instanceOf(topic, Array);
+    }
+  },
   'Copy': {
     topic: set.copy(),
     'Copy of parent Collection': function(topic) {
       assert.deepEqual(topic, set);
     }
   },
-  'Clone': {
-    topic: set.clone(),
-    'Instance of parent Collection': function(topic) {
-      assert.instanceOf(topic, Array);
+  'toArray': {
+    topic: new Collection(1, 2, 3),
+    'Native Array': function(topic) {
+      assert.deepEqual(topic, [1, 2, 3]);
+    }
+  },
+  'Concatenate': {
+    topic: new Collection(1, 2, 3).concat(4),
+    'Add element to set': function(topic) {
+      assert.deepEqual(topic, [1, 2, 3, 4]);
+    }
+  },
+  'Slice': {
+    topic: new Collection(1, 2, 3),
+    'Fetch all of set': function(topic) {
+      assert.deepEqual(topic.slice(), topic);
+    },
+     'Fetch part of set': function(topic) {
+      assert.deepEqual(topic.slice(0, 2), [1, 2]);
+    }
+  },
+  'Filter': {
+    topic: new Collection(1, 2, 3).filter(function(e) { return e < 3; }),
+    'Less than 3': function(topic) {
+      assert.deepEqual(topic, [1, 2]);
+    }
+  },
+  'Every': {
+    topic: new Collection(1, 2, 3).every(function(e) { return e < 4; }),
+    'True for all elements': function(topic) {
+      assert.equal(topic, true);
+    }
+  },
+  'Map': {
+    topic: new Collection(1, 2, 3).map(function(e) { return e + 1; }),
+    'Add 1 to all elements': function(topic) {
+      assert.deepEqual(topic, [2, 3, 4]);
+    },
+    'Chain function after map': function(topic) {
+      assert.deepEqual(topic.distribution(), { 2: 1, 3: 1, 4: 1 });
+    }
+  },
+  'Some': {
+    topic: new Collection(1, 2, 3).some(function(e) { return e == 2; }),
+    'At least one element matches condition': function(topic) {
+      assert.equal(topic, true);
+    }
+  },
+  'Reduce': {
+    topic: new Collection(1, 2, 3).reduce(function(a, b) { return a + b; }),
+    'Sum of set': function(topic) {
+      assert.equal(topic, 6);
+    }
+  },
+  'Reduce Right': {
+    topic: new Collection('a', 'b', 'c').reduceRight(function(a, b) { return a + b; }),
+    'Reverse set of characters to string': function(topic) {
+      assert.equal(topic, 'cba');
     }
   },
   'Extend': {
