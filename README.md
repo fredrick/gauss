@@ -246,7 +246,7 @@ set.distribution('relative');
 Return Collection appended with an Array.
 
 ``` javascript
-var numbers = new Collection(1, 2, 3).append(new Collection(1, 2, 3);
+var numbers = new Collection(1, 2, 3).append([1, 2, 3]);
 > [1, 2, 3, 1, 2, 3]
 ```
 
