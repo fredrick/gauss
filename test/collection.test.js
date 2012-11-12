@@ -232,6 +232,12 @@ vows.describe('Collection').addBatch({
       assert.deepEqual(topic.slice(0, 2), [1, 2]);
     }
   },
+  'Split': {
+    topic: new Collection(1, 2, 3, 4).split(function(e) { return (e % 2) === 0; }),
+    'Divisible by 2': function(topic) {
+      assert.deepEqual(topic, [[1, 3], [2, 4]]);
+    }
+  },
   'Filter': {
     topic: new Collection(1, 2, 3).filter(function(e) { return e < 3; }),
     'Less than 3': function(topic) {

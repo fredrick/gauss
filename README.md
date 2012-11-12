@@ -202,6 +202,17 @@ people.findOne({ lastname: 'Smith' });
 > { firstname: 'John', lastname: 'Smith' }
 ```
 
+#### Collection.split
+
+    .split(predicate[, callback])
+
+Returns a Collection split into elements that do not and do match a condition.
+
+``` javascript
+Collection(1, 2, 3, 4).split(function(e) { return e % 2 === 0 });
+> [[1, 3], [2, 4]]
+```
+
 #### Collection.mode
 
     .mode(callback)
@@ -266,7 +277,7 @@ Returns the largest number.
 
 #### Vector.equal
 
-    .equal(callback)
+    .equal(that)
 
 Returns `true` or `false` if Vector values are equal to another Vector or Array.
 
