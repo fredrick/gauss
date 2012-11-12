@@ -206,7 +206,7 @@ people.findOne({ lastname: 'Smith' });
 
     .split(predicate[, callback])
 
-Returns a Collection split into elements that do not and do match a condition.
+Returns a Collection split by a condition.
 
 ``` javascript
 Collection(1, 2, 3, 4).split(function(e) { return e % 2 === 0 });
