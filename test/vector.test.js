@@ -283,6 +283,14 @@ vows.describe('Vector').addBatch({
       }
     }
   },
+  'Sample': {
+    '(Variance)': {
+      topic: set.sample.variance(),
+      '861.1595918367346': function(topic) {
+        assert.equal(topic, 861.1595918367346);
+      }
+    }
+  },
   'Push': {
     '(Return)': {
       topic: (function() {
