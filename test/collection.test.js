@@ -238,6 +238,12 @@ vows.describe('Collection').addBatch({
       assert.deepEqual(topic, [[1, 3], [2, 4]]);
     }
   },
+  'Unique': {
+    topic: new Collection(1, 1, 2, 2, 3, 4, 7, 7).unique(),
+    'One of each element in array': function(topic) {
+      assert.deepEqual(topic, [1, 2, 3, 4, 7]);
+    }
+  },
   'Filter': {
     topic: new Collection(1, 2, 3).filter(function(e) { return e < 3; }),
     'Less than 3': function(topic) {
@@ -282,13 +288,16 @@ vows.describe('Collection').addBatch({
       identity: function() {
         return this;
       },
+      head: function() {
+        return this[0];
+      },
       tail: function() {
         return this.slice(1);
       }
     }),
     'Extend Collection': function(topic) {
-      assert.deepEqual([topic, topic.tail()],
-        [set, set.slice(1)]
+      assert.deepEqual([topic, topic[0], topic.tail()],
+        [set.identity(), set.head(), set.slice(1)]
       );
     }
   }

@@ -34,12 +34,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var util = require('util'),
     repl = require('repl'),
     exec = require('child_process').exec,
-    gauss = require('../lib/gauss');
-    Vector = require('../lib/vector');
+    gauss = require('../lib/gauss'),
+    Collection = require('../lib/collection'),
+    Vector = require('../lib/vector'),
     TimeSeries = require('../lib/timeseries');
 
 var session = repl.start('gauss> ', null, null, null, true);
 session.context.gauss = gauss;
+session.context.Collection = Collection;
 session.context.Vector = Vector;
 session.context.TimeSeries = TimeSeries;
 
