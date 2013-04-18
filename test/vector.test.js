@@ -31,6 +31,17 @@ var prices = new Vector([22.2734, 22.194, 22.0847, 22.1741, 22.184, 22.1344,
 23.9516, 23.6338, 23.8225, 23.8722, 23.6537, 23.187,
 23.0976, 23.326, 22.6805, 23.0976, 22.4025, 22.1725]);
 
+function deepEqualWithNaN(actual, expected) {
+  if (actual.length !== expected.length) {
+    throw new RangeError();
+  }
+  else {
+    for (var i = 0; i < expected.length; i++) {
+      assert.deepEqual(isNaN(actual[i]) ? true : actual[i], isNaN(expected[i]) ? true : expected[i]);
+    }  
+  }
+}
+
 vows.describe('Vector').addBatch({
   // Statistical methods
   'Minimum': {
@@ -67,19 +78,31 @@ vows.describe('Vector').addBatch({
     topic: set.gmean(),
     '41.40478623971778': function(topic) {
       assert.equal(topic, 41.40478623971778);
-    } 
+    }
   },
   'Harmonic Mean': {
     topic: set.hmean(),
     '19.0456068931919': function(topic) {
       assert.equal(topic, 19.0456068931919);
-    } 
+    }
   },
   'Quadratic Mean': {
     topic: set.qmean(),
     '61.26548783777046': function(topic) {
       assert.equal(topic, 61.26548783777046);
-    }  
+    }
+  },
+  'Power Mean': {
+    topic: set,
+    'p = -1, harmonic mean': function(topic) {
+      assert.equal(topic.pmean(-1), topic.hmean());
+    },
+    'p = 1, arithmetic mean': function(topic) {
+      assert.equal(topic.pmean(1), topic.mean());
+    },
+    'p = 2, quadratic mean': function(topic) {
+      assert.equal(topic.pmean(2), topic.qmean());
+    }
   },
   'Median': {
     '(Even number of elements)': {
@@ -284,11 +307,89 @@ vows.describe('Vector').addBatch({
     }
   },
   'Sample': {
+    '(Arithmetic Mean)': {
+      topic: set.sample.mean(),
+      '55.04081632653061': function(topic) {
+        assert.equal(topic, (set.mean() * set.length) / (set.length - 1));
+      }
+    },
+    '(Geometric Mean)': {
+      topic: set.sample.gmean(),
+      '44.67366451004403': function(topic) {
+        assert.equal(topic, 44.67366451004403);
+      }
+    },
+    '(Harmonic Mean)': {
+      topic: set.sample.hmean(),
+      '18.66469475532806': function(topic) {
+        assert.equal(topic, 18.66469475532806);
+      }
+    },
+    '(Quadratic Mean)': {
+      topic: set.sample.qmean(),
+      '61.88748843255635': function(topic) {
+        assert.equal(topic, 61.88748843255635);
+      }
+    },
     '(Variance)': {
       topic: set.sample.variance(),
       '861.1595918367346': function(topic) {
         assert.equal(topic, 861.1595918367346);
       }
+    }
+  },
+  // Math methods
+  'Math': {
+    topic: (function() {
+      return new Vector(-10, 82, 67.1, 17.3, 36, 3.5, 1, 61, 33, 20);
+    })(),
+    'max': function(topic) {
+      assert.deepEqual(topic.max(), 82);
+    },
+    'min': function(topic) {
+      assert.equal(topic.min(), -10);
+    },
+    'abs': function(topic) {
+      assert.deepEqual(topic.abs(), new Vector(10, 82, 67.1, 17.3, 36, 3.5, 1, 61, 33, 20));
+    },
+    'acos': function(topic) {
+      deepEqualWithNaN(topic.acos(), topic.map(Math.acos));
+    },
+    'asin': function(topic) {
+      deepEqualWithNaN(topic.asin(), topic.map(Math.asin));
+    },
+    'atan': function(topic) {
+      deepEqualWithNaN(topic.atan(), topic.map(Math.atan));
+    },
+    'ceil': function(topic) {
+      assert.deepEqual(topic.ceil(), topic.map(Math.ceil));
+    },
+    'cos': function(topic) {
+      assert.deepEqual(topic.cos(), topic.map(Math.cos));
+    },
+    'exp': function(topic) {
+      assert.deepEqual(topic.exp(), topic.map(Math.exp));
+    },
+    'floor': function(topic) {
+      assert.deepEqual(topic.floor(), topic.map(Math.floor));
+    },
+    'log': function(topic) {
+      deepEqualWithNaN(topic.log(), topic.map(Math.log));
+    },
+    'pow': function(topic) {
+      assert.deepEqual(topic.pow(2), topic.map(function(x) { return Math.pow(x, 2); }));
+    },
+    'round': function(topic) {
+      assert.deepEqual(topic.round(), topic.map(Math.round));
+    },
+    'sin': function(topic) {
+      assert.deepEqual(topic.sin(), topic.map(Math.sin));
+    },
+    'sqrt': function(topic) {
+      deepEqualWithNaN(topic.sqrt(), topic.map(Math.sqrt));
+    },
+    'tan': function(topic) {
+      assert.deepEqual(topic.tan(), topic.map(Math.tan));
     }
   },
   'Push': {
@@ -400,19 +501,6 @@ vows.describe('Vector').addBatch({
       }
     }
   },
-  // Utility methods
-  'Equal': {
-    topic: new Vector(1, 2, 3).equal(new Vector(1, 2, 3)),
-    'True': function(topic) {
-      assert.equal(topic, true);
-    }
-  },
-  'Clone': {
-    topic: set.clone(),
-    'Instance of parent Vector': function(topic) {
-      assert.instanceOf(topic, Array);
-    }
-  },
   'Copy': {
     topic: set.copy().toArray(),
     'Copy of parent Vector': function(topic) {
@@ -428,13 +516,27 @@ vows.describe('Vector').addBatch({
         return this.slice(1);
       }
     }),
-    'Extend Vector': function(topic) {
-      assert.deepEqual([topic.toArray(), topic.tail().toArray()],
-        [set.toArray(), set.slice(1).toArray()]
+    'Multiple Extensions': function(topic) {
+      assert.deepEqual([topic.toArray(), topic.tail().toArray(), topic.identity().toArray()],
+        [set.toArray(), set.slice(1).toArray(), set.toArray()]
       );
+    },
+    'Extensions Maintain Parent Methods': function(topic) {
+      assert.equal(topic.identity().sum(), set.sum());
     }
   },
   // Collection methods
+  'Every': {
+    topic: (function() {
+      return new Vector(-3, -5, -1, -8, -10, -1);
+    })(),
+    'All values are negative': function(topic) {
+      assert.equal(topic.every(function(e) { return e < 0; }), true);
+    },
+    'All values are not positive': function(topic) {
+      assert.equal(topic.every(function(e) { return e > 0; }), false);
+    }
+  },
   'Append': {
     topic: (function() {
       var appended = new Vector(1, 2, 3);
@@ -446,6 +548,38 @@ vows.describe('Vector').addBatch({
     },
     'Sum of numbers after append': function(topic) {
       assert.equal(topic.sum(), new Vector(1, 2, 3, 1, 2, 3).sum());
+    }
+  },
+  'Some': {
+    topic: (function() {
+      return new Vector(3, 5, 1, -8, 10, 1);
+    })(),
+    'Some values are negative': function(topic) {
+      assert.equal(topic.some(function(e) { return e < 0; }), true);
+    },
+    'Some values are positive': function(topic) {
+      assert.equal(topic.some(function(e) { return e > 0; }), true);
+    }
+  },
+  'Reduce': {
+    topic: set,
+    'Left to right': function(topic) {
+      assert.equal(topic.reduce(function(a, b) { return a + b; }), set.sum());
+    },
+    'Right to left': function(topic) {
+      assert.equal(topic.reduceRight(function(a, b) { return a + b; }), set.sum());
+    }
+  },
+  'Equal': {
+    topic: new Vector(1, 2, 3).equal(new Vector(1, 2, 3)),
+    'True': function(topic) {
+      assert.equal(topic, true);
+    }
+  },
+  'Clone': {
+    topic: set.clone(),
+    'Instance of parent Vector': function(topic) {
+      assert.instanceOf(topic, Array);
     }
   }
 }).export(module);
