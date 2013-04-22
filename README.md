@@ -13,7 +13,7 @@ both on Node.js and within the web browser.
 ## License
 MIT/X11 - See [LICENSE][2]
 
-[2]: http://github.com/stackd/gauss/blob/master/LICENSE
+[2]: http://github.com/wayoutmind/gauss/blob/master/LICENSE
 
 ## Getting started
 
@@ -39,7 +39,7 @@ To invoke the tests:
 
 ### Using Gauss within a web browser
 
-Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility is listed [here](http://kangax.github.com/es5-compat-table/). Download and include [gauss.min.js](https://raw.github.com/stackd/gauss/master/gauss.min.js):
+Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility is listed [here](http://kangax.github.com/es5-compat-table/). Download and include [gauss.min.js](https://raw.github.com/wayoutmind/gauss/master/gauss.min.js):
 
 ``` html
 <script src="gauss.min.js" type="text/javascript"></script>
@@ -52,44 +52,9 @@ Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility
 </script>
 ```
 
-### Using the REPL console
-
-To experiment with Gauss or to quickly start a Node.js command-line environment for number crunching, Gauss ships with a lightweight REPL (Read–eval–print loop). Start the REPL with `npm start` within the source directory, or `gauss` if installed globally (via `npm install -g gauss`).
-
-For example, using the `help()` function and analyzing a data file from the Gauss REPL:
-
-``` javascript
-$ gauss
-gauss> help()
-Gauss 0.2.7
-   /* https://github.com/stackd/gauss#api */ 
-   Functions: print, inspect, cwd, clear, install, uninstall, help
-   Usage:
-     var set = new Vector(1, 2, 3);
-     var times = new gauss.TimeSeries();
-{ version: '0.2.7',
-  Collection: [Function],
-  Vector: [Function],
-  TimeSeries: [Function] }
-gauss> var fs = require('fs');
-gauss> var data = fs.readFileSync('data.txt').toString();
-gauss> data = data.split('\n');
-[ '8',
-  '6',
-  '7',
-  '5',
-  '3',
-  '0',
-  '9' ]
-gauss> data = data.map(function(line) { return parseInt(line) });
-gauss> var set = new Vector(data);
-gauss> set.mean()
-5.428571428571429
-```
-
 ## API
 
-Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/stackd/gauss/issues) and/or [submit a patch](https://github.com/stackd/gauss#fork_box)!
+Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/wayoutmind/gauss/issues) and/or [submit a patch](https://github.com/wayoutmind/gauss#fork_box)!
 
 ### Instantiation
 
@@ -106,7 +71,7 @@ numbers[0] = 2;
 set[1] = 7;
 ```
 
-*Note: To prevent unintended scope/prototype pollution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/stackd/gauss/issues/6) the native Array data type.
+*Note: To prevent unintended scope/prototype pollution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/wayoutmind/gauss/issues/6) the native Array data type.
 Use the .toArray() method of any Gauss object to a convert to a vanilla Array. Gauss adds a toVector() convenience method to the Array prototype to facilitate converting to Vectors.*
 
 ### Callbacks and method chaining
@@ -206,7 +171,7 @@ people.findOne({ lastname: 'Smith' });
 
     .split(predicate[, callback])
 
-Returns a Collection split by a condition.
+Returns a Collection split by a condition (binomial cluster).
 
 ``` javascript
 Collection(1, 2, 3, 4).split(function(e) { return e % 2 === 0 });
@@ -259,6 +224,17 @@ Return Collection appended with an Array.
 ``` javascript
 var numbers = new Collection(1, 2, 3).append([1, 2, 3]);
 > [1, 2, 3, 1, 2, 3]
+```
+
+#### Collection.unique
+
+    .unique(callback)
+
+Return a Collection with unique values.
+
+``` javascript
+var numbers = new Collection(1, 2, 3, 3, 4, 4).unique();
+> [1, 2, 3, 4]
 ```
 
 ### Vector
@@ -342,6 +318,21 @@ Returns the harmonic mean.
     .qmean(callback)
 
 Returns the quadratic mean (RMS, root mean square).
+
+#### Vector.pmean
+
+    .pmean(p, callback)
+
+Returns the power/generalized mean given an order or power *p*.
+
+```javascript
+// p = -1, harmonic mean
+set.pmean(-1);
+// p = 1, arithmetic mean
+set.pmean(1);
+// p = 2, quadratic mean
+set.pmean(2);
+```
 
 #### Vector.median
 
@@ -559,6 +550,21 @@ Returns a copy of the data set.
 
 Returns another instance of the Vector object and data.
 
+### Sample
+
+By default, `Vector` calculates values against the population `n`. However, sample statistics functions on `n - 1` are available by using the `sample` modifier for the following functions:
+
+``` javascript
+Vector().sample
+{ mean: [Function],
+  gmean: [Function],
+  hmean: [Function],
+  qmean: [Function],
+  pmean: [Function],
+  variance: [Function],
+  stdev: [Function] }
+```
+
 ### Math
 
 `Vector` supports applying all the [Math](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Math#Methods) object methods to an entire Vector set of numbers.
@@ -592,3 +598,38 @@ Returns a Vector of the times.
     .values(callback)
 
 Returns a Vector of the time series values.
+
+### Using the REPL console
+
+To experiment with Gauss or to quickly start a Node.js command-line environment for number crunching, Gauss ships with a lightweight REPL (Read–eval–print loop). Start the REPL with `npm start` within the source directory, or `gauss` if installed globally (via `npm install -g gauss`).
+
+For example, using the `help()` function and analyzing a data file from the Gauss REPL:
+
+``` javascript
+$ gauss
+gauss> help()
+Gauss 0.2.8
+   /* https://github.com/wayoutmind/gauss#api */ 
+   Functions: print, inspect, cwd, clear, install, uninstall, help
+   Usage:
+     var set = new Vector(1, 2, 3);
+     var times = new gauss.TimeSeries();
+{ version: '0.2.8',
+  Collection: [Function],
+  Vector: [Function],
+  TimeSeries: [Function] }
+gauss> var fs = require('fs');
+gauss> var data = fs.readFileSync('data.txt').toString();
+gauss> data = data.split('\n');
+[ '8',
+  '6',
+  '7',
+  '5',
+  '3',
+  '0',
+  '9' ]
+gauss> data = data.map(function(line) { return parseInt(line) });
+gauss> var set = new Vector(data);
+gauss> set.mean()
+5.428571428571429
+```

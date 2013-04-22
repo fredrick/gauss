@@ -1,12 +1,12 @@
 {
-  "author": "Fredrick Galoso <fgaloso@stackd.com>",
+  "author": "Fredrick Galoso <fredrickgaloso@gmail.com>",
   "name": "gauss",
   "description": "JavaScript statistics, analytics, and set library",
   "version": "0.2.8",
   "keywords": [ "statistics", "analytics", "timeseries", "math", "gauss", "set" ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/stackd/gauss.git"
+    "url": "git://github.com/wayoutmind/gauss.git"
   },
   "main": "index",
   "engines": {

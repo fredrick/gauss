@@ -2,7 +2,7 @@
 The awesome people that have contributed to Gauss.
 
 #Author
-Fredrick Galoso - Stackd
+Fredrick Galoso
 
 #Contributors
 Philip Tellis - Yahoo!

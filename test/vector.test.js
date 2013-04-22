@@ -331,10 +331,22 @@ vows.describe('Vector').addBatch({
         assert.equal(topic, 61.88748843255635);
       }
     },
+    '(Power Mean)': {
+      topic: set.sample.pmean(1),
+      '55.04081632653061': function(topic) {
+        assert.equal(topic, set.sample.mean());
+      }
+    },
     '(Variance)': {
       topic: set.sample.variance(),
       '861.1595918367346': function(topic) {
         assert.equal(topic, 861.1595918367346);
+      }
+    },
+    '(Standard Deviation)': {
+      topic: set.sample.stdev(),
+      '29.34552081386075': function(topic) {
+        assert.equal(topic, 29.34552081386075);
       }
     }
   },

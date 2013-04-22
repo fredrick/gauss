@@ -9,7 +9,7 @@
 _/_/
 
 Gauss: JavaScript statistics, analytics, and set library - Node.js and web browser ready
-Copyright (c) 2012 Fredrick Galoso https://stackd.com/
+Copyright (c) 2013 Fredrick Galoso http://fredrickgaloso.me/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -64,7 +64,7 @@ session.context.uninstall = function(name) {
 
 session.context.help = function(command) {
   var banner = 'Gauss '+ gauss.version +'\n \
-  /* https://github.com/stackd/gauss#api */ \n \
+  /* https://github.com/wayoutmind/gauss#api */ \n \
   Functions: print, inspect, cwd, clear, install, uninstall, help\n \
   Usage:\n \
     var set = new Vector(1, 2, 3);\n \
