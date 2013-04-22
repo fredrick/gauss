@@ -1,6 +1,7 @@
 Gauss
 =============
 [![Build Status](https://travis-ci.org/wayoutmind/gauss.png?branch=master)](https://travis-ci.org/wayoutmind/gauss)
+[![Dependency Status](https://gemnasium.com/wayoutmind/gauss.png)](https://gemnasium.com/wayoutmind/gauss)
 
 > JavaScript statistics, analytics, and set library - [Node.js](http://nodejs.org/) and web browser ready
 
