@@ -404,6 +404,63 @@ vows.describe('Vector').addBatch({
       assert.deepEqual(topic.tan(), topic.map(Math.tan));
     }
   },
+  // Binary methods
+  'Add': {
+    topic: (function() {
+        return new Vector(-2, 2, 3.1);
+    })(),
+    'add vector': function(topic) {
+        assert.deepEqual(topic.add([1, 2, 3]), new Vector([-1, 4, 6.1]));
+    },
+    'add scalar': function(topic) {
+        assert.deepEqual(topic.add(2), new Vector([0, 4, 5.1]));
+    },
+    'fail on adding different lengths': function(topic) {
+        assert.throws(function () {topic.add([1, 2]);}, RangeError);
+    }
+  },
+  'Subtract': {
+    topic: (function() {
+      return new Vector(-2, 2, 3.1);
+    })(),
+    'subtract vector': function(topic) {
+      assert.deepEqual(topic.subtract([1, 2, 2]), new Vector([-3, 0, 1.1]));
+    },
+    'subtract scalar': function(topic) {
+      assert.deepEqual(topic.subtract(2), new Vector([-4, 0, 1.1]));
+    },
+    'fail on subtracting different lengths': function(topic) {
+      assert.throws(function () {topic.subtract([1, 2]);}, RangeError);
+    }
+  },
+  'Multiply': {
+    topic: (function() {
+      return new Vector(-2, 2, 3.1);
+    })(),
+    'multiply vector': function(topic) {
+      assert.deepEqual(topic.multiply([1, 2, 2]), new Vector([-2, 4, 6.2]));
+    },
+    'multiply scalar': function(topic) {
+      assert.deepEqual(topic.multiply(2), new Vector([-4, 4, 6.2]));
+    },
+    'fail on multiply different lengths': function(topic) {
+      assert.throws(function () {topic.multiply([1, 2]);}, RangeError);
+    }
+  },
+  'Divide': {
+    topic: (function() {
+      return new Vector(-2, 2, 3.0);
+    })(),
+    'divide vector': function(topic) {
+      assert.deepEqual(topic.divide([1, 2, 2]), new Vector([-2, 1, 1.5]));
+    },
+    'divide scalar': function(topic) {
+      assert.deepEqual(topic.divide(2), new Vector([-1, 1, 1.5]));
+    },
+    'fail on divide different lengths': function(topic) {
+      assert.throws(function () {topic.divide([1, 2]);}, RangeError);
+    }
+  },
   'Push': {
     '(Return)': {
       topic: (function() {
@@ -442,13 +499,13 @@ vows.describe('Vector').addBatch({
         return numbers.sum();
       })(),
       '685.6774': function(topic) {
-          assert.equal(topic, (function() {
-            var sum = 0.0;
-            for (var i = 0; i < prices.length; i++) {
-              sum += prices[i];
-            }
-            return sum;
-          })());
+        assert.equal(topic, (function() {
+          var sum = 0.0;
+          for (var i = 0; i < prices.length; i++) {
+            sum += prices[i];
+          }
+          return sum;
+        })());
       }
     },
     '(Product)': {

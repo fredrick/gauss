@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "./bin/gauss",
-    "test": "node_modules/.bin/vows test/*",
+    "test": "vows test/*",
     "build": "node build.js"
   }
 }
