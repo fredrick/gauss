@@ -483,6 +483,43 @@ prices.ema({
 
 Returns a Vector of values containing the sequential difference between numbers in a sequence.
 
+#### Vector.add
+
+    .add(other, callback)
+
+Returns a new vector which is the result of adding the input, element-wise to existing vector.
+Takes input of a Array of same length as the existing Vector, or a scalar.
+
+``` javascript
+var a = new Vector(1,2);
+var b = new Vector(3,4);
+a.add(b)
+> [4,6]
+a.add(10)
+> [11,13]
+```
+
+#### Vector.subtract
+
+    .subtract(other, callback)
+
+Returns a new vector which is the result of subtracting the input, element-wise from the existing vector.
+Takes input of a Array of same length as the existing Vector, or a scalar.
+
+#### Vector.multiply
+
+    .multiply(other, callback)
+
+Returns a new vector which is the result of element-wise multiplying the existing vector by the input.
+Takes input of a Array of same length as the existing Vector, or a scalar.
+
+#### Vector.divide
+
+    .divide(other, callback)
+
+Returns a new vector which is the result of element-wise dividing the existing vector by the input.
+Takes input of a Array of same length as the existing Vector, or a scalar.
+
 #### Vector.extend
 
     .extend(methods, callback)
