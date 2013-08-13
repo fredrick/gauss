@@ -238,6 +238,17 @@ var numbers = new Collection(1, 2, 3, 3, 4, 4).unique();
 > [1, 2, 3, 4]
 ```
 
+#### Collection.union
+
+    .union(array, callback)
+
+Return the union of a Collection with another array.
+
+``` javascript
+var union = new Collection('a', 'b', 'c').union(['c', 'd', 'e']);
+> ['a', 'b', 'c', 'd', 'e']
+```
+
 ### Vector
 
 #### Vector.min

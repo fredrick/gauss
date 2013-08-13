@@ -190,7 +190,7 @@ vows.describe('Collection').addBatch({
   'Append': {
     topic: new Collection(1, 2, 3).append(new Collection(1, 2, 3)),
     '[1, 2, 3, 1, 2, 3]': function(topic) {
-      assert.deepEqual(topic, new Collection().push(1, 2, 3, 1, 2, 3));
+      assert.deepEqual(topic, new Collection(1, 2, 3, 1, 2, 3));
     }
   },
   'Equal': {
@@ -281,6 +281,12 @@ vows.describe('Collection').addBatch({
     topic: new Collection('a', 'b', 'c').reduceRight(function(a, b) { return a + b; }),
     'Reverse set of characters to string': function(topic) {
       assert.equal(topic, 'cba');
+    }
+  },
+  'Union': {
+    topic: new Collection('a', 'b', 'c'),
+    'Join two collections together': function(topic) {
+      assert.deepEqual(topic.union(['c', 'd', 'e']), ['a', 'b', 'c', 'd', 'e']);
     }
   },
   'Extend': {
