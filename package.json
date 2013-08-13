@@ -23,6 +23,6 @@
   "scripts": {
     "start": "./bin/gauss",
     "test": "vows test/*",
-    "build": "node build.js"
+    "prepublish": "node build.js"
   }
 }
