@@ -1,0 +1,17 @@
+{
+  "name": "gauss",
+  "version": "0.2.9",
+  "main": "gauss.min.js",
+  "ignore": [
+    ".git",
+    ".gitignore",
+    ".travis.yml",
+    "bin",
+    "build.js",
+    "index.js",
+    "lib",
+    "package.json",
+    "test"
+  ],
+  "homepage": "https://github.com/wayoutmind/gauss"
+}

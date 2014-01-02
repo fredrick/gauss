@@ -657,13 +657,13 @@ For example, using the `help()` function and analyzing a data file from the Gaus
 ``` javascript
 $ gauss
 gauss> help()
-Gauss 0.2.8
+Gauss 0.2.9
    /* https://github.com/wayoutmind/gauss#api */ 
    Functions: print, inspect, cwd, clear, install, uninstall, help
    Usage:
      var set = new Vector(1, 2, 3);
      var times = new gauss.TimeSeries();
-{ version: '0.2.8',
+{ version: '0.2.9',
   Collection: [Function],
   Vector: [Function],
   TimeSeries: [Function] }
