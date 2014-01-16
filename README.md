@@ -249,7 +249,15 @@ var union = new Collection('a', 'b', 'c').union(['c', 'd', 'e']);
 > ['a', 'b', 'c', 'd', 'e']
 ```
 
+#### Collection.extend
+
+    .extend(methods, callback)
+
+Returns a Collection extended with named functions.
+
 ### Vector
+
+Extends *Collection* methods with numerical functions.
 
 #### Vector.min
 
