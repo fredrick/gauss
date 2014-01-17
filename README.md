@@ -53,6 +53,10 @@ Gauss requires support for ECMAScript 5 `Object.defineProperties`. Compatibility
 </script>
 ```
 
+The [Bower](http://bower.io/) package manager can also be used to install Gauss:
+
+    $ bower install gauss
+
 ## API
 
 Gauss has methods for univariate (Vector) and time series (TimeSeries) analysis. We're constantly working on adding more functions, adding multivariate statistics, and we encourage additions to the library. Accuracy is a primary concern. If Gauss is returning incorrect results, [please submit an issue](https://github.com/wayoutmind/gauss/issues) and/or [submit a patch](https://github.com/wayoutmind/gauss#fork_box)!
