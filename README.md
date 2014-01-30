@@ -14,6 +14,9 @@ both on Node.js and within the web browser.
 ## License
 MIT/X11 - See [LICENSE][2]
 
+## Support
+Mailing list - [Google Group](https://groups.google.com/forum/?pli=1#!forum/gaussjs)
+
 [2]: http://github.com/wayoutmind/gauss/blob/master/LICENSE
 
 ## Getting started
