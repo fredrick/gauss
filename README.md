@@ -69,9 +69,6 @@ The [Bower](http://bower.io/) package manager can also be used to install Gauss:
 var set = new gauss.Vector(5, 1, 3, 2, 21);
 // From a regular Array
 var numbers = new gauss.Vector([8, 6, 7, 5, 3, 0, 9]);
-// Convert an Array to a Vector with helper method toVector()
-var vanilla = [4, 1, 2, 5, 6];
-var chocolate = vanilla.toVector();
 // After instantiation, Gauss objects can be conveniently used like any Array
 numbers[0] = 2;
 set[1] = 7;
@@ -79,6 +76,24 @@ set[1] = 7;
 
 *Note: To prevent unintended scope/prototype pollution, Gauss versions after 0.2.3 have [removed support for monkey patching](https://github.com/wayoutmind/gauss/issues/6) the native Array data type.
 Use the .toArray() method of any Gauss object to a convert to a vanilla Array.*
+
+### Scope chaining
+
+Gauss collections utilize scope chaining for converting between collection types:
+
+``` javascript
+var Collection = gauss.Collection;
+var things = new Collection(
+    { type: 1, age: 1 },
+    { type: 2, age: 2 },
+    { type: 1, age: 3 },
+    { type: 2, age: 4 });
+things
+    .find({ type: 2 })
+    .map(function(thing) { return thing.age; })
+    .toVector() // Scope chained converter, converting mapped collection of ages to Vector
+    .sum();
+```
 
 ### Callbacks and method chaining
 

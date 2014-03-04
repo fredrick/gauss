@@ -650,5 +650,11 @@ vows.describe('Vector').addBatch({
     'Instance of parent Vector': function(topic) {
       assert.instanceOf(topic, Array);
     }
+  },
+  'toVector from Array': {
+    topic: [1, 2, 3, 4],
+    'Returns new Vector': function(topic) {
+      assert.equal(topic.toVector().sum(), 10);
+    }
   }
 }).export(module);

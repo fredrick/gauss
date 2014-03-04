@@ -306,5 +306,11 @@ vows.describe('Collection').addBatch({
         [set.identity(), set.head(), set.slice(1)]
       );
     }
+  },
+  'toCollection from Array': {
+    topic: [1, 2, 3, 4, 4],
+    'Returns new Collection': function(topic) {
+      assert.deepEqual(topic.toCollection().unique(), [1, 2, 3, 4]);
+    }
   }
 }).export(module);
