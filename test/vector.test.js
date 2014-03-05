@@ -595,6 +595,24 @@ vows.describe('Vector').addBatch({
     }
   },
   // Collection methods
+  'Indices Of': {
+    topic: heterogeneous.indicesOf(-2),
+    '[5, 9]': function(topic) {
+      assert.deepEqual(topic, [5, 9]);
+    }
+  },
+  'Indices By': {
+    topic: heterogeneous.indicesBy(function(e) { return e === -2 }),
+    '[5, 9]': function(topic) {
+      assert.deepEqual(topic, [5, 9]);
+    }
+  },
+  'Find One': {
+    topic: new Vector([{ x: 0, y: 1 }]),
+    'Returns object': function(topic) {
+      assert.deepEqual(topic.findOne({ x: 0 }), { x: 0, y: 1 });
+    }
+  },
   'Every': {
     topic: (function() {
       return new Vector(-3, -5, -1, -8, -10, -1);
