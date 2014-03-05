@@ -31,16 +31,6 @@ Getting started with Gauss + Node.js is easy:
 var gauss = require('gauss');
 ```
 
-### Installing development dependencies and running tests
-
-To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatically resolve this:
-
-    $ npm install gauss --devel
-
-To invoke the tests:
-
-    $ npm test
-
 ### Using Gauss within a web browser
 
 Gauss requires support for ECMAScript 5 `Object.defineProperty`. Compatibility is listed [here](http://kangax.github.com/es5-compat-table/). Download and include [gauss.min.js](https://raw.github.com/wayoutmind/gauss/master/gauss.min.js):
@@ -59,6 +49,29 @@ Gauss requires support for ECMAScript 5 `Object.defineProperty`. Compatibility i
 The [Bower](http://bower.io/) package manager can also be used to install Gauss:
 
     $ bower install gauss
+
+Gauss is also [Asynchronous Module Definition](http://requirejs.org/docs/whyamd.html) compatible and
+works with a module loaders like [RequireJS](http://requirejs.org):
+
+``` html
+<script async src="gauss.min.js"></script>
+<script>
+    require(['gauss'], function(gauss) {
+        var Collection = gauss.Collection,
+            distribution = new Collection(1, 2, 3).distribution();
+    });
+</script>
+```
+
+### Installing development dependencies and running tests
+
+To run Gauss's tests you'll need [Vows](http://vowsjs.org/). NPM can automatically resolve this:
+
+    $ npm install gauss --devel
+
+To invoke the tests:
+
+    $ npm test
 
 ## API
 
@@ -685,13 +698,13 @@ For example, using the `help()` function and analyzing a data file from the Gaus
 ``` javascript
 $ gauss
 gauss> help()
-Gauss 0.2.9
+Gauss 0.2.10
    /* https://github.com/wayoutmind/gauss#api */
    Functions: print, inspect, cwd, clear, install, uninstall, help
    Usage:
      var set = new Vector(1, 2, 3);
      var times = new gauss.TimeSeries();
-{ version: '0.2.9',
+{ version: '0.2.10',
   Collection: [Function],
   Vector: [Function],
   TimeSeries: [Function] }

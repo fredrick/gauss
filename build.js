@@ -14,10 +14,14 @@ var vector = function(next) {
   exec('node_modules/.bin/uglifyjs lib/vector.js -nc >> gauss.min.js', next);
 };
 
-var timeseries = function() {
-  exec('node_modules/.bin/uglifyjs lib/timeseries.js -nc >> gauss.min.js');
+var timeseries = function(next) {
+  exec('node_modules/.bin/uglifyjs lib/timeseries.js -nc >> gauss.min.js', next);
+};
+
+var amd = function() {
+  exec('node_modules/.bin/uglifyjs lib/amd.js -nc >> gauss.min.js');
 };
 
 (function() {
-  collection(function() { return vector(timeseries); });
+  collection(function() { return vector(function() { return timeseries(amd); }); });
 })();

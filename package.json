@@ -2,7 +2,7 @@
   "author": "Fredrick Galoso <fredrickgaloso@gmail.com>",
   "name": "gauss",
   "description": "JavaScript statistics, analytics, and set library",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "keywords": [ "statistics", "analytics", "timeseries", "math", "gauss", "set" ],
   "repository": {
     "type": "git",
