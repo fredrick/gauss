@@ -1,6 +1,6 @@
 {
   "name": "gauss",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "main": "gauss.min.js",
   "ignore": [
     ".git",
