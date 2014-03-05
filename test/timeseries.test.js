@@ -21,5 +21,11 @@ vows.describe('TimeSeries').addBatch({
   	'[2, 4]': function(topic) {
   		assert.deepEqual(topic, [2, 4]);
   	}
+  },
+  'toTimeSeries from Array': {
+    topic: [[1315378833000, 2], [1315789015000, 4]],
+    'Returns new TimeSeries': function(topic) {
+      assert.deepEqual(topic.toTimeSeries().values(), [2, 4]);
+    }
   }
 }).export(module);
