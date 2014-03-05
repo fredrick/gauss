@@ -51,7 +51,7 @@ The [Bower](http://bower.io/) package manager can also be used to install Gauss:
     $ bower install gauss
 
 Gauss is also [Asynchronous Module Definition](http://requirejs.org/docs/whyamd.html) compatible and
-works with a module loaders like [RequireJS](http://requirejs.org):
+works with module loaders like [RequireJS](http://requirejs.org):
 
 ``` html
 <script async src="gauss.min.js"></script>
