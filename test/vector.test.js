@@ -38,7 +38,7 @@ function deepEqualWithNaN(actual, expected) {
   else {
     for (var i = 0; i < expected.length; i++) {
       assert.deepEqual(isNaN(actual[i]) ? true : actual[i], isNaN(expected[i]) ? true : expected[i]);
-    }  
+    }
   }
 }
 
@@ -147,7 +147,7 @@ vows.describe('Vector').addBatch({
     topic: set.range(),
     '97': function(topic) {
       assert.equal(topic, 97);
-    }  
+    }
   },
   'Variance': {
     topic: set.variance(),
@@ -611,6 +611,39 @@ vows.describe('Vector').addBatch({
     topic: new Vector([{ x: 0, y: 1 }]),
     'Returns object': function(topic) {
       assert.deepEqual(topic.findOne({ x: 0 }), { x: 0, y: 1 });
+    }
+  },
+  'Concatenate': {
+    topic: new Vector(1, 2, 3).concat(4),
+    'Add element to set': function(topic) {
+      assert.deepEqual(topic, [1, 2, 3, 4]);
+    }
+  },
+  'Slice': {
+    topic: new Vector(1, 2, 3),
+    'Fetch all of set': function(topic) {
+      assert.deepEqual(topic.slice(), topic);
+    },
+     'Fetch part of set': function(topic) {
+      assert.deepEqual(topic.slice(0, 2), [1, 2]);
+    }
+  },
+  'Split': {
+    topic: new Vector(1, 2, 3, 4).split(function(e) { return (e % 2) === 0; }),
+    'Divisible by 2': function(topic) {
+      assert.deepEqual(topic, [[1, 3], [2, 4]]);
+    }
+  },
+  'Unique': {
+    topic: new Vector(1, 1, 2, 2, 3, 4, 7, 7).unique(),
+    'One of each element in array': function(topic) {
+      assert.deepEqual(topic, [1, 2, 3, 4, 7]);
+    }
+  },
+  'Filter': {
+    topic: new Vector(1, 2, 3).filter(function(e) { return e < 3; }),
+    'Less than 3': function(topic) {
+      assert.deepEqual(topic, [1, 2]);
     }
   },
   'Every': {
