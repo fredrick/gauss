@@ -41,8 +41,7 @@ Gauss requires support for ECMAScript 5 `Object.defineProperty`. Compatibility i
     var Vector = gauss.Vector,
         TimeSeries = gauss.TimeSeries;
     var set = new gauss.Vector(5, 1, 3, 2, 21),
-        numbers = new Vector([8, 6, 7, 5, 3, 0, 9]),
-        times = new TimeSeries([1315378833000, 3.5], [1315789015000, 7.826]);
+        numbers = new Vector([8, 6, 7, 5, 3, 0, 9]);
 </script>
 ```
 
@@ -669,6 +668,8 @@ Math.sqrt(squares.sum() / squares.length); // Sum the squares -> find average ->
 ```
 
 ### TimeSeries
+
+*Deprecated*
 
 Perform time series analysis. TimeSeries currently accepts time in epoch milliseconds followed by a numeric value.
 
