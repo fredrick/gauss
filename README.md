@@ -699,7 +699,7 @@ For example, using the `help()` function and analyzing a data file from the Gaus
 ``` javascript
 $ gauss
 gauss> help()
-Gauss 0.2.11
+Gauss 0.2.12
    /* https://github.com/wayoutmind/gauss#api */
    Functions: print, inspect, cwd, clear, install, uninstall, help
    Usage:
