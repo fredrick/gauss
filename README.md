@@ -1,12 +1,12 @@
 Gauss
 =============
-[![Build Status](https://travis-ci.org/wayoutmind/gauss.png?branch=master)](https://travis-ci.org/wayoutmind/gauss)
+[![Build Status](https://travis-ci.org/Dwolla/arbalest.svg?branch=master)](https://travis-ci.org/wayoutmind/gauss)
 [![Dependency Status](https://gemnasium.com/wayoutmind/gauss.png)](https://gemnasium.com/wayoutmind/gauss)
 
 > JavaScript statistics, analytics, and set library - [Node.js](http://nodejs.org/) and web browser ready
 
 Evented, asynchronous, and fast, [Node.js][1] is an attractive platform for data mining, statistics, and data analysis.
-[Gauss](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) makes it [easy to calculate and explore data through JavaScript](http://fredrickgaloso.me/talks/gauss.html#9),
+[Gauss](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) makes it easy to calculate and explore data through JavaScript,
 both on Node.js and within the web browser.
 
 [1]: http://nodejs.org/
