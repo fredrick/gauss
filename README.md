@@ -724,3 +724,7 @@ gauss> var set = new Vector(data);
 gauss> set.mean()
 5.428571428571429
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/wayoutmind/gauss/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
